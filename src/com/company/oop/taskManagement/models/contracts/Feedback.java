@@ -1,5 +1,5 @@
 package com.company.oop.taskManagement.models.contracts;
 
-public interface Feedback {
+public interface Feedback extends Identifiable{
     void changeRating();
 }
