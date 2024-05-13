@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BoardImpl implements Board {
-    public static final int MIN_NAME_LENGTH = 5;
-    public static final int MAX_NAME_LENGTH = 10;
-    public static final String NAME_ERR_MESSAGE =
-            "Name should be between %d and %d length.".formatted(MIN_NAME_LENGTH, MAX_NAME_LENGTH);
+    public static final int BOARD_MIN_NAME_LENGTH = 5;
+    public static final int BOARD_MAX_NAME_LENGTH = 10;
+    public static final String BOARD_NAME_ERR_MESSAGE =
+            "Name should be between %d and %d length.".formatted(BOARD_MIN_NAME_LENGTH, BOARD_MAX_NAME_LENGTH);
     private String name;
     private final List<Task> tasks = new ArrayList<>();
     private final List<EventLog>activityHistory = new ArrayList<>();
@@ -35,9 +35,9 @@ public class BoardImpl implements Board {
 
     private void setName(String name) {
         ValidationHelpers.validateIntRange(name.length(),
-                MIN_NAME_LENGTH,
-                MAX_NAME_LENGTH,
-                NAME_ERR_MESSAGE);
+                BOARD_MIN_NAME_LENGTH,
+                BOARD_MAX_NAME_LENGTH,
+                BOARD_NAME_ERR_MESSAGE);
         this.name = name;
     }
 
