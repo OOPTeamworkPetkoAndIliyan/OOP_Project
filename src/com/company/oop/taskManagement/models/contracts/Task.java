@@ -1,8 +1,7 @@
 package com.company.oop.taskManagement.models.contracts;
 
-public interface Task {
+public interface Task extends Identifiable {
     void changeStatus();
-    void assignTo();
     void addComment(Comment comment);
     void removeComment(Comment comment);
     void showDetails();

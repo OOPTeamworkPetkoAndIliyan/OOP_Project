@@ -17,7 +17,7 @@ public class BoardImpl implements Board {
     private final List<String>activityHistory = new ArrayList<>();
 
     public BoardImpl(String name) {
-        this.name = name;
+        setName(name);
     }
 
     public String getName() {
@@ -32,7 +32,7 @@ public class BoardImpl implements Board {
         return new ArrayList<>(activityHistory);
     }
 
-    public void setName(String name) {
+    private void setName(String name) {
         ValidationHelpers.validateIntRange(name.length(),
                 MIN_NAME_LENGTH,
                 MAX_NAME_LENGTH,
@@ -52,6 +52,6 @@ public class BoardImpl implements Board {
 
     @Override
     public void showActivity() {
-        
+
     }
 }
