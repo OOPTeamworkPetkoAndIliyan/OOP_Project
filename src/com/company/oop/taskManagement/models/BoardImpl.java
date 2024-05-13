@@ -1,5 +1,6 @@
 package com.company.oop.taskManagement.models;
 
+import com.company.oop.taskManagement.EventLog;
 import com.company.oop.taskManagement.models.contracts.Board;
 import com.company.oop.taskManagement.models.contracts.Task;
 import com.company.oop.taskManagement.utils.ValidationHelpers;
@@ -14,7 +15,7 @@ public class BoardImpl implements Board {
             "Name should be between %d and %d length.".formatted(MIN_NAME_LENGTH, MAX_NAME_LENGTH);
     private String name;
     private final List<Task> tasks = new ArrayList<>();
-    private final List<String>activityHistory = new ArrayList<>();
+    private final List<EventLog>activityHistory = new ArrayList<>();
 
     public BoardImpl(String name) {
         setName(name);
@@ -28,7 +29,7 @@ public class BoardImpl implements Board {
         return new ArrayList<>(tasks);
     }
 
-    public List<String> getActivityHistory() {
+    public List<EventLog> getActivityHistory() {
         return new ArrayList<>(activityHistory);
     }
 
