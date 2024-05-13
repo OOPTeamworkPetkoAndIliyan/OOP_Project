@@ -1,7 +1,7 @@
 package com.company.oop.taskManagement.models;
 
-import com.company.oop.taskManagement.EventLog;
 import com.company.oop.taskManagement.models.contracts.Comment;
+import com.company.oop.taskManagement.models.contracts.Member;
 import com.company.oop.taskManagement.models.contracts.Task;
 import com.company.oop.taskManagement.utils.ValidationHelpers;
 
@@ -23,11 +23,11 @@ public abstract class TaskImpl implements Task {
     private int id;
     private String title;
     private String description;
-    private String assignee;
+    private Member assignee;
     private final List<Comment> comments = new ArrayList<>();
     private final List<EventLog> history = new ArrayList<>();
 
-    protected TaskImpl(String title, String description, String assignee) {
+    protected TaskImpl(String title, String description, Member assignee) {
         this.id = idCounter++;
         setTitle(title);
         setDescription(description);
@@ -52,7 +52,7 @@ public abstract class TaskImpl implements Task {
         this.description = description;
     }
 
-    private void setAssignee(String assignee) {
+    private void setAssignee(Member assignee) {
         this.assignee = assignee;
     }
 
@@ -64,7 +64,7 @@ public abstract class TaskImpl implements Task {
         return description;
     }
 
-    public String getAssignee() {
+    public Member getAssignee() {
         return assignee;
     }
 

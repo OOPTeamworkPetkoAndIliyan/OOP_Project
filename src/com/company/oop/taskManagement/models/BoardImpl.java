@@ -1,6 +1,5 @@
 package com.company.oop.taskManagement.models;
 
-import com.company.oop.taskManagement.EventLog;
 import com.company.oop.taskManagement.models.contracts.Board;
 import com.company.oop.taskManagement.models.contracts.Task;
 import com.company.oop.taskManagement.utils.ValidationHelpers;
