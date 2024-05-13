@@ -8,25 +8,25 @@ import com.company.oop.taskManagement.utils.ValidationHelpers;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TeamsImpl implements Team {
+public class TeamImpl implements Team {
 
-    public static final int MIN_NAME_LENGTH = 5;
-    public static final int MAX_NAME_LENGTH = 15;
-    public static final String NAME_ERR_MESSAGE =
-            "Name should be between %d and %d length.".formatted(MIN_NAME_LENGTH, MAX_NAME_LENGTH);
+    public static final int TEAM_MIN_NAME_LENGTH = 5;
+    public static final int TEAM_MAX_NAME_LENGTH = 15;
+    public static final String TEAM_NAME_ERR_MESSAGE =
+            "Name should be between %d and %d length.".formatted(TEAM_MIN_NAME_LENGTH, TEAM_MAX_NAME_LENGTH);
     private String name;
     private final List<Member> members = new ArrayList<>();
     private final List<Board> boards = new ArrayList<>();
 
-    public TeamsImpl(String name) {
+    public TeamImpl(String name) {
         setName(name);
     }
 
     private void setName(String name) {
         ValidationHelpers.validateIntRange(name.length(),
-                MIN_NAME_LENGTH,
-                MAX_NAME_LENGTH,
-                NAME_ERR_MESSAGE);
+                TEAM_MIN_NAME_LENGTH,
+                TEAM_MAX_NAME_LENGTH,
+                TEAM_NAME_ERR_MESSAGE);
         this.name = name;
     }
 
