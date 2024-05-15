@@ -3,6 +3,7 @@ package com.company.oop.taskManagement.models;
 import com.company.oop.taskManagement.models.contracts.Comment;
 import com.company.oop.taskManagement.models.contracts.Member;
 import com.company.oop.taskManagement.models.contracts.Task;
+import com.company.oop.taskManagement.models.enums.BugEnums.Status;
 import com.company.oop.taskManagement.utils.ValidationHelpers;
 
 import java.util.ArrayList;
