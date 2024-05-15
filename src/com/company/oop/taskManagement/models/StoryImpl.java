@@ -11,11 +11,22 @@ public class StoryImpl extends TaskImpl implements Story {
     private Size size;
     private Priority priority;
 
-    protected StoryImpl(String title, String description, Member assignee, Status status, Size size, Priority priority) {
-        super(title, description, assignee);
+    private Member assignee;
+
+    protected StoryImpl(int id, String title, String description, Member assignee, Size size, Priority priority) {
+        super( id,title, description);
+        setAssignee(assignee);
         this.status = Status.NOT_DONE;
         this.size = size;
         this.priority = priority;
+    }
+
+    public Member getAssignee() {
+        return assignee;
+    }
+
+    public void setAssignee(Member assignee) {
+        this.assignee = assignee;
     }
 
     public Status getStatus() {
@@ -30,10 +41,7 @@ public class StoryImpl extends TaskImpl implements Story {
         return priority;
     }
 
-    @Override
-    public void changeStatus() {
 
-    }
 
     @Override
     public void changePriority() {
@@ -42,6 +50,16 @@ public class StoryImpl extends TaskImpl implements Story {
 
     @Override
     public void changeSize() {
+
+    }
+
+    @Override
+    public void advanceStatus() {
+        
+    }
+
+    @Override
+    public void revertStatus() {
 
     }
 

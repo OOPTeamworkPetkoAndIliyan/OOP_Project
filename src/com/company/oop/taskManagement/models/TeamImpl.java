@@ -44,17 +44,24 @@ public class TeamImpl implements Team {
 
     @Override
     public void showActivity() {
-
+    // foreach(Member member : this.members){
+        //
+        // }
     }
 
     @Override
     public void addMember(Member member) {
+        //дали мембъра съществува
+        //addMember 0 0
+        //addMember 0 levski
+        //addMember -u Ilian Karagyozov -t levski
         members.add(member);
     }
 
     @Override
     public void removeMember(Member member) {
         members.remove(member);
+
     }
 
     @Override

@@ -50,3 +50,6 @@ public class MemberImpl implements Member {
 
     }
 }
+// foreach(Member member : members){
+// if(member.getName().equals(name))
+// }

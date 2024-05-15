@@ -1,5 +1,6 @@
 package com.company.oop.taskManagement.models;
 
+import com.company.oop.taskManagement.models.contracts.Member;
 import com.company.oop.taskManagement.models.enums.BugEnums.Priority;
 import com.company.oop.taskManagement.models.enums.BugEnums.Severity;
 import com.company.oop.taskManagement.models.enums.BugEnums.Status;
@@ -12,16 +13,26 @@ public class BugImpl extends TaskImpl{
     private Priority priority;
     private Severity severity;
     private Status status;
+    private Member assignee;
 
 
 
-    public BugImpl(String title, String description, String assignee, List<String> stepsToReproduce,
+    public BugImpl(int id, String title, String description, Member assignee, List<String> stepsToReproduce,
                    Priority priority, Severity severity) {
-        super(title, description, assignee);
+        super(id,title, description);
+        setAssignee(assignee);
         this.stepsToReproduce = stepsToReproduce;
         this.status = Status.ACTIVE;
         this.priority = priority;
         this.severity = severity;
+    }
+
+    public Member getAssignee() {
+        return assignee;
+    }
+
+    public void setAssignee(Member assignee) {
+        this.assignee = assignee;
     }
 
     public List<String> getStepsToReproduce() {
@@ -40,8 +51,14 @@ public class BugImpl extends TaskImpl{
         return status;
     }
 
+
     @Override
-    public void changeStatus() {
+    public void advanceStatus() {
+
+    }
+
+    @Override
+    public void revertStatus() {
 
     }
 

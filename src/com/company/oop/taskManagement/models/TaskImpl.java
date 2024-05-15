@@ -19,20 +19,16 @@ public abstract class TaskImpl implements Task {
     public static final String TASK_DESCRIPTION_ERR_MESSAGE = "Task description must be between %d and %d".formatted(
             TASK_DESCRIPTION_MIN_LENGTH, TASK_DESCRIPTION_MAX_LENGTH
     );
-    private static int idCounter = 1;
     private int id;
     private String title;
     private String description;
-    private Member assignee;
     private final List<Comment> comments = new ArrayList<>();
     private final List<EventLog> history = new ArrayList<>();
 
-    protected TaskImpl(String title, String description, Member assignee) {
-        this.id = idCounter++;
+    protected TaskImpl( int id, String title, String description) {
+        this.id = id;
         setTitle(title);
         setDescription(description);
-        setAssignee(assignee);
-
     }
 
 
@@ -52,20 +48,12 @@ public abstract class TaskImpl implements Task {
         this.description = description;
     }
 
-    private void setAssignee(Member assignee) {
-        this.assignee = assignee;
-    }
-
     public String getTitle() {
         return title;
     }
 
     public String getDescription() {
         return description;
-    }
-
-    public Member getAssignee() {
-        return assignee;
     }
 
     public List<Comment> getComments() {
@@ -82,7 +70,10 @@ public abstract class TaskImpl implements Task {
     }
 
     @Override
-    public abstract void changeStatus();
+    public abstract void advanceStatus();
+
+    @Override
+    public abstract void revertStatus();
 
     @Override
     public void addComment(Comment comment) {
@@ -97,3 +88,16 @@ public abstract class TaskImpl implements Task {
     @Override
     public abstract void showDetails();
 }
+ /*за репозиторито
+    List<Task>tasks = new ArrayList<>(tasks);
+    List<Bug>bugs = new ArrayList<>(bugs);
+    List<Story>storys = new ArrayList<>(storys);
+    List<FeedBack>feedbacks = new ArrayList<>(feedbacks);
+
+    private void createBug(Параметрите за бъга){
+        *тук имаш проверки и др глупости*
+        bugs.add(bug) -> съхраняваш новият бъг в листа от бъгове
+        tasks.add(tasks) -> съхраняваш новият бъг в листа от таскове
+        return new BugImpl(Параметрите за бъга)
+    }
+  */
