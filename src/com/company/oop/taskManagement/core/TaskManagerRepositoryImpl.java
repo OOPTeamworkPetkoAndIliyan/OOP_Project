@@ -1,10 +1,7 @@
 package com.company.oop.taskManagement.core;
 
 import com.company.oop.taskManagement.core.contracts.TaskManagerRepository;
-import com.company.oop.taskManagement.models.BugImpl;
-import com.company.oop.taskManagement.models.FeedbackImpl;
-import com.company.oop.taskManagement.models.MemberImpl;
-import com.company.oop.taskManagement.models.StoryImpl;
+import com.company.oop.taskManagement.models.*;
 import com.company.oop.taskManagement.models.contracts.*;
 import com.company.oop.taskManagement.models.enums.Priority;
 import com.company.oop.taskManagement.models.enums.Severity;
@@ -78,20 +75,25 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
     }
 
     @Override
-    public Member createMember(String name) {
-        Member member = new MemberImpl(name);
-        members.add(member);
-        return member;
-    }
-
-    @Override
-    public Story createStory(String title, String description, String assignee, Size size, Priority priority) {
-        Story story = new StoryImpl(++nextId, title, description, assignee,
+    public Story createStoryWithoutAssignee(String title, String description, Priority priority, Size size) {
+        Story story = new StoryImpl(++nextId, title, description,
                 size, priority);
         stories.add(story);
         return story;
     }
 
+    @Override
+    public Team createTeam(String name){
+        Team team = new TeamImpl(name);
+        teams.add(team);
+        return team;
+    }
+    @Override
+    public Member createMember(String name) {
+        Member member = new MemberImpl(name);
+        members.add(member);
+        return member;
+    }
     @Override
     public Feedback createFeedback(String title, String description, int rating) {
         Feedback feedback = new FeedbackImpl(++nextId, title, description, rating);

@@ -13,14 +13,13 @@ public class StoryImpl extends TaskImpl implements Story {
 
     private String assignee;
 
-    public StoryImpl(int id, java.lang.String title, java.lang.String description, String assignee, Size size, Priority priority) {
+    public StoryImpl(int id, String title, String description, Size size, Priority priority) {
         super( id,title, description);
         setAssignee(assignee);
         this.storyStatus = StoryStatus.NOT_DONE;
         this.size = size;
         this.priority = priority;
     }
-
     public String getAssignee() {
         return assignee;
     }

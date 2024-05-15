@@ -28,8 +28,8 @@ public class TeamImpl implements Team {
                 TEAM_NAME_ERR_MESSAGE);
         this.name = name;
     }
-
-    public java.lang.String getName() {
+    @Override
+    public String getName() {
         return name;
     }
 

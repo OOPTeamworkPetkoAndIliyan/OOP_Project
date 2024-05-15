@@ -1,8 +1,6 @@
 package com.company.oop.taskManagement.core;
 
-import com.company.oop.taskManagement.commands.CreateNewBugWithAssigneeCommand;
-import com.company.oop.taskManagement.commands.CreateNewBugWithoutAssigneeCommand;
-import com.company.oop.taskManagement.commands.CreateNewMemberCommand;
+import com.company.oop.taskManagement.commands.*;
 import com.company.oop.taskManagement.commands.contracts.Command;
 import com.company.oop.taskManagement.commands.enums.CommandType;
 import com.company.oop.taskManagement.core.contracts.TaskManagerCommandFactory;
@@ -21,6 +19,10 @@ public class TaskManagerCommandFactoryImpl implements TaskManagerCommandFactory 
                 return new CreateNewBugWithAssigneeCommand(taskManagerRepository);
             case CREATENEWMEMBERCOMMAND:
                 return new CreateNewMemberCommand(taskManagerRepository);
+            case CREATENEWTEAMCOMMAND:
+                return new CreateNewTeamCommand(taskManagerRepository);
+            case CREATENEWSTORYWITHOUTASSIGNEE:
+                return new CreateNewStoryWithoutAssignee(taskManagerRepository);
             default:
                 throw new IllegalArgumentException();
         }

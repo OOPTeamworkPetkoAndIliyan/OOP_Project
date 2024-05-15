@@ -19,12 +19,8 @@ public class CreateNewBugWithoutAssigneeCommand extends BaseCommand {
     @Override
     protected String executeCommand(List<String> parameters) {
         ValidationHelpers.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
-        //String title, String description, Member assignee, List<String> stepsToReproduce,
-        // Priority priority, Severity severity
         String title = parameters.get(0);
         String description = parameters.get(1);
-      //  String assignee = parameters.get(2);
-//        List<String> stepsToReproduce = Arrays.stream(parameters.get(3).split(" ")).toList();
         Priority priority = ParsingHelpers.tryParseEnum(parameters.get(2), Priority.class);
         Severity severity = ParsingHelpers.tryParseEnum(parameters.get(3), Severity.class);
 
