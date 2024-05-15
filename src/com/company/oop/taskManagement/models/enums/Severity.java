@@ -1,4 +1,4 @@
-package com.company.oop.taskManagement.models.enums.BugEnums;
+package com.company.oop.taskManagement.models.enums;
 
 public enum Severity {
     CRITICAL,

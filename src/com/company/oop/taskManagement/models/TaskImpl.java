@@ -1,9 +1,7 @@
 package com.company.oop.taskManagement.models;
 
 import com.company.oop.taskManagement.models.contracts.Comment;
-import com.company.oop.taskManagement.models.contracts.Member;
 import com.company.oop.taskManagement.models.contracts.Task;
-import com.company.oop.taskManagement.models.enums.BugEnums.Status;
 import com.company.oop.taskManagement.utils.ValidationHelpers;
 
 import java.util.ArrayList;
@@ -26,7 +24,7 @@ public abstract class TaskImpl implements Task {
     private final List<Comment> comments = new ArrayList<>();
     private final List<EventLog> history = new ArrayList<>();
 
-    protected TaskImpl( int id, String title, String description) {
+    protected TaskImpl(int id, String title, String description) {
         this.id = id;
         setTitle(title);
         setDescription(description);

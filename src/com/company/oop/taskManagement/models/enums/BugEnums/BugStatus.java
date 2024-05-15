@@ -1,6 +1,6 @@
 package com.company.oop.taskManagement.models.enums.BugEnums;
 
-public enum Status {
+public enum BugStatus {
     ACTIVE,
     DONE;
 

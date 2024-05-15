@@ -2,12 +2,12 @@ package com.company.oop.taskManagement.models;
 
 import com.company.oop.taskManagement.models.contracts.Member;
 import com.company.oop.taskManagement.models.contracts.Story;
-import com.company.oop.taskManagement.models.enums.StoryEnums.Priority;
-import com.company.oop.taskManagement.models.enums.StoryEnums.Size;
-import com.company.oop.taskManagement.models.enums.StoryEnums.Status;
+import com.company.oop.taskManagement.models.enums.Priority;
+import com.company.oop.taskManagement.models.enums.Size;
+import com.company.oop.taskManagement.models.enums.StoryEnums.StoryStatus;
 
 public class StoryImpl extends TaskImpl implements Story {
-    private Status status;
+    private StoryStatus storyStatus;
     private Size size;
     private Priority priority;
 
@@ -16,7 +16,7 @@ public class StoryImpl extends TaskImpl implements Story {
     protected StoryImpl(int id, String title, String description, Member assignee, Size size, Priority priority) {
         super( id,title, description);
         setAssignee(assignee);
-        this.status = Status.NOT_DONE;
+        this.storyStatus = StoryStatus.NOT_DONE;
         this.size = size;
         this.priority = priority;
     }
@@ -29,8 +29,8 @@ public class StoryImpl extends TaskImpl implements Story {
         this.assignee = assignee;
     }
 
-    public Status getStatus() {
-        return status;
+    public StoryStatus getStatus() {
+        return storyStatus;
     }
 
     public Size getSize() {
