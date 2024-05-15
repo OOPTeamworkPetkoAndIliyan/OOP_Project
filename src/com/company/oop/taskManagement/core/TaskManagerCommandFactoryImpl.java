@@ -1,6 +1,8 @@
 package com.company.oop.taskManagement.core;
 
-import com.company.oop.taskManagement.commands.AddNewBugCommand;
+import com.company.oop.taskManagement.commands.CreateNewBugWithAssigneeCommand;
+import com.company.oop.taskManagement.commands.CreateNewBugWithoutAssigneeCommand;
+import com.company.oop.taskManagement.commands.CreateNewMemberCommand;
 import com.company.oop.taskManagement.commands.contracts.Command;
 import com.company.oop.taskManagement.commands.enums.CommandType;
 import com.company.oop.taskManagement.core.contracts.TaskManagerCommandFactory;
@@ -13,8 +15,12 @@ public class TaskManagerCommandFactoryImpl implements TaskManagerCommandFactory 
     public Command createCommandFromCommandName(String commandTypeAsString, TaskManagerRepository taskManagerRepository) {
         CommandType commandType = ParsingHelpers.tryParseEnum(commandTypeAsString, CommandType.class);
         switch (commandType) {
-            case ADDNEWBUGCOMMAND:
-                return new AddNewBugCommand(taskManagerRepository);
+            case CREATENEWBUGWITHOUTASSIGNEE:
+                return new CreateNewBugWithoutAssigneeCommand(taskManagerRepository);
+            case CREATENEWBUGWITHASSIGNEE:
+                return new CreateNewBugWithAssigneeCommand(taskManagerRepository);
+            case CREATENEWMEMBERCOMMAND:
+                return new CreateNewMemberCommand(taskManagerRepository);
             default:
                 throw new IllegalArgumentException();
         }

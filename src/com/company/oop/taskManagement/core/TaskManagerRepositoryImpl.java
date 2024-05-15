@@ -3,6 +3,7 @@ package com.company.oop.taskManagement.core;
 import com.company.oop.taskManagement.core.contracts.TaskManagerRepository;
 import com.company.oop.taskManagement.models.BugImpl;
 import com.company.oop.taskManagement.models.FeedbackImpl;
+import com.company.oop.taskManagement.models.MemberImpl;
 import com.company.oop.taskManagement.models.StoryImpl;
 import com.company.oop.taskManagement.models.contracts.*;
 import com.company.oop.taskManagement.models.enums.Priority;
@@ -17,6 +18,8 @@ import java.util.List;
 public class TaskManagerRepositoryImpl implements TaskManagerRepository {
     private int nextId;
     private final List<Team> teams;
+    private final List<Member> members;
+    private final List<Task> tasks;
     private final List<Bug> bugs;
     private final List<Story> stories;
     private final List<Feedback> feedbacks;
@@ -24,10 +27,38 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
     public TaskManagerRepositoryImpl() {
         nextId = 0;
         this.teams = new ArrayList<>();
+        this.members = new ArrayList<>();
+        this.tasks = new ArrayList<>();
         this.bugs = new ArrayList<>();
         this.stories = new ArrayList<>();
         this.feedbacks = new ArrayList<>();
     }
+
+//
+//    public List<Team> getTeams() {
+//        return new ArrayList<>(teams);
+//    }
+//
+//    public List<Member> getMembers() {
+//        return new ArrayList<>(members);
+//    }
+//
+//    public List<Task> getTasks() {
+//        return new ArrayList<>(tasks);
+//    }
+//
+//    public List<Bug> getBugs() {
+//        return new ArrayList<>(bugs);
+//    }
+//
+//    public List<Story> getStories() {
+//        return new ArrayList<>(stories);
+//    }
+//
+//    public List<Feedback> getFeedbacks() {
+//        return new ArrayList<>(feedbacks);
+//    }
+
 
     @Override
     public Bug createBug(String title, String description, Priority priority, Severity severity) {
@@ -35,6 +66,22 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
                 priority, severity);
         bugs.add(bug);
         return bug;
+    }
+    public Bug createBugWithAssignee(String title, String description,
+                                     Priority priority, Severity severity, String memberName) {
+        Bug bug = new BugImpl(++nextId, title, description,
+                priority, severity);
+        Member member = getMemberByName(memberName);
+        bug.setAssignee(member);
+        bugs.add(bug);
+        return bug;
+    }
+
+    @Override
+    public Member createMember(String name) {
+        Member member = new MemberImpl(name);
+        members.add(member);
+        return member;
     }
 
     @Override
@@ -50,5 +97,15 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
         Feedback feedback = new FeedbackImpl(++nextId, title, description, rating);
         feedbacks.add(feedback);
         return feedback;
+    }
+
+    @Override
+    public Member getMemberByName(String memberName) {
+        for (Member member : members) {
+            if (member.getName().equals(memberName)){
+                return member;
+            }
+        }
+        throw new IllegalArgumentException(String.format("There is no such member with this name: %s.", memberName));
     }
 }

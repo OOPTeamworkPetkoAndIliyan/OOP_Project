@@ -18,11 +18,11 @@ public class TaskManagerEngineImpl implements TaskManagerEngine {
     private static final String COMMENT_CLOSE_SYMBOL = "}}";
     private static final String REPORT_SEPARATOR = "####################";
 
-    private final TaskManagerCommandFactory commandFactory;
+    private final TaskManagerCommandFactory taskManagerCommandFactory;
     private final TaskManagerRepository taskManagerRepository;
 
     public TaskManagerEngineImpl() {
-        this.commandFactory = new TaskManagerCommandFactoryImpl();
+        this.taskManagerCommandFactory = new TaskManagerCommandFactoryImpl();
         this.taskManagerRepository = new TaskManagerRepositoryImpl();
     }
 
@@ -52,7 +52,7 @@ public class TaskManagerEngineImpl implements TaskManagerEngine {
     private void processCommand(String inputLine) {
         String commandName = extractCommandName(inputLine);
         List<String> parameters = extractCommandParameters(inputLine);
-        Command command = commandFactory.createCommandFromCommandName(commandName, taskManagerRepository);
+        Command command = taskManagerCommandFactory.createCommandFromCommandName(commandName, taskManagerRepository);
         String executionResult = command.execute(parameters);
         print(executionResult);
     }
