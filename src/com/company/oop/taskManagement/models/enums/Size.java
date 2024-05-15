@@ -1,4 +1,4 @@
-package com.company.oop.taskManagement.models.enums.StoryEnums;
+package com.company.oop.taskManagement.models.enums;
 
 public enum Size {
     LARGE,

@@ -2,9 +2,9 @@ package com.company.oop.taskManagement.models;
 
 import com.company.oop.taskManagement.models.contracts.Bug;
 import com.company.oop.taskManagement.models.contracts.Member;
-import com.company.oop.taskManagement.models.enums.BugEnums.Priority;
-import com.company.oop.taskManagement.models.enums.BugEnums.Severity;
-import com.company.oop.taskManagement.models.enums.BugEnums.Status;
+import com.company.oop.taskManagement.models.enums.Priority;
+import com.company.oop.taskManagement.models.enums.Severity;
+import com.company.oop.taskManagement.models.enums.BugEnums.BugStatus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ public class BugImpl extends TaskImpl implements Bug {
     private List<String> stepsToReproduce;
     private Priority priority;
     private Severity severity;
-    private Status status;
+    private BugStatus bugStatus;
     private Member assignee;
 
 
@@ -23,7 +23,7 @@ public class BugImpl extends TaskImpl implements Bug {
         super(id,title, description);
         setAssignee(assignee);
         this.stepsToReproduce = stepsToReproduce;
-        this.status = Status.ACTIVE;
+        this.bugStatus = BugStatus.ACTIVE;
         this.priority = priority;
         this.severity = severity;
     }
@@ -48,8 +48,8 @@ public class BugImpl extends TaskImpl implements Bug {
         return severity;
     }
 
-    public Status getStatus() {
-        return status;
+    public BugStatus getStatus() {
+        return bugStatus;
     }
 
 

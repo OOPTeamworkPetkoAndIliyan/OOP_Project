@@ -1,6 +1,6 @@
 package com.company.oop.taskManagement.models.enums.StoryEnums;
 
-public enum Status {
+public enum StoryStatus {
     NOT_DONE,
     IN_PROGRESS,
     DONE;

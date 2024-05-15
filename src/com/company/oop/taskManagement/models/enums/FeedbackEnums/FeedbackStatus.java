@@ -1,6 +1,6 @@
 package com.company.oop.taskManagement.models.enums.FeedbackEnums;
 
-public enum Status {
+public enum FeedbackStatus {
     NEW,
     UNSCHEDULED,
     SCHEDULED,

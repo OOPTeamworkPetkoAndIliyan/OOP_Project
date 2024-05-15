@@ -1,17 +1,17 @@
 package com.company.oop.taskManagement.models;
 
 import com.company.oop.taskManagement.models.contracts.Feedback;
-import com.company.oop.taskManagement.models.enums.FeedbackEnums.Status;
+import com.company.oop.taskManagement.models.enums.FeedbackEnums.FeedbackStatus;
 
 
 public class FeedbackImpl extends TaskImpl implements Feedback {
     private int rating;
-    private Status status;
+    private FeedbackStatus status;
 
     public FeedbackImpl(int id, String title, String description, int rating) {
         super(id, title, description);
         this.rating = rating;
-        this.status = Status.NEW;
+        this.status = FeedbackStatus.NEW;
     }
 
     @Override
