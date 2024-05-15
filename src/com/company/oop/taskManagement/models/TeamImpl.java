@@ -1,7 +1,6 @@
 package com.company.oop.taskManagement.models;
 
 import com.company.oop.taskManagement.models.contracts.Board;
-import com.company.oop.taskManagement.models.contracts.Member;
 import com.company.oop.taskManagement.models.contracts.Team;
 import com.company.oop.taskManagement.utils.ValidationHelpers;
 
@@ -12,17 +11,17 @@ public class TeamImpl implements Team {
 
     public static final int TEAM_MIN_NAME_LENGTH = 5;
     public static final int TEAM_MAX_NAME_LENGTH = 15;
-    public static final String TEAM_NAME_ERR_MESSAGE =
+    public static final java.lang.String TEAM_NAME_ERR_MESSAGE =
             "Name should be between %d and %d length.".formatted(TEAM_MIN_NAME_LENGTH, TEAM_MAX_NAME_LENGTH);
-    private String name;
-    private final List<Member> members = new ArrayList<>();
+    private java.lang.String name;
+    private final List<String> members = new ArrayList<>();
     private final List<Board> boards = new ArrayList<>();
 
-    public TeamImpl(String name) {
+    public TeamImpl(java.lang.String name) {
         setName(name);
     }
 
-    private void setName(String name) {
+    private void setName(java.lang.String name) {
         ValidationHelpers.validateIntRange(name.length(),
                 TEAM_MIN_NAME_LENGTH,
                 TEAM_MAX_NAME_LENGTH,
@@ -30,11 +29,11 @@ public class TeamImpl implements Team {
         this.name = name;
     }
 
-    public String getName() {
+    public java.lang.String getName() {
         return name;
     }
 
-    public List<Member> getMembers() {
+    public List<String> getMembers() {
         return new ArrayList<>(members);
     }
 
@@ -50,7 +49,7 @@ public class TeamImpl implements Team {
     }
 
     @Override
-    public void addMember(Member member) {
+    public void addMember(String member) {
         //дали мембъра съществува
         //addMember 0 0
         //addMember 0 levski
@@ -59,7 +58,7 @@ public class TeamImpl implements Team {
     }
 
     @Override
-    public void removeMember(Member member) {
+    public void removeMember(String member) {
         members.remove(member);
 
     }

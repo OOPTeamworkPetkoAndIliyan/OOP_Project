@@ -1,6 +1,6 @@
 package com.company.oop.taskManagement.models;
 
-import com.company.oop.taskManagement.models.contracts.Member;
+
 import com.company.oop.taskManagement.models.contracts.Story;
 import com.company.oop.taskManagement.models.enums.Priority;
 import com.company.oop.taskManagement.models.enums.Size;
@@ -11,9 +11,9 @@ public class StoryImpl extends TaskImpl implements Story {
     private Size size;
     private Priority priority;
 
-    private Member assignee;
+    private String assignee;
 
-    public StoryImpl(int id, String title, String description, Member assignee, Size size, Priority priority) {
+    public StoryImpl(int id, java.lang.String title, java.lang.String description, String assignee, Size size, Priority priority) {
         super( id,title, description);
         setAssignee(assignee);
         this.storyStatus = StoryStatus.NOT_DONE;
@@ -21,11 +21,11 @@ public class StoryImpl extends TaskImpl implements Story {
         this.priority = priority;
     }
 
-    public Member getAssignee() {
+    public String getAssignee() {
         return assignee;
     }
 
-    public void setAssignee(Member assignee) {
+    public void setAssignee(String assignee) {
         this.assignee = assignee;
     }
 

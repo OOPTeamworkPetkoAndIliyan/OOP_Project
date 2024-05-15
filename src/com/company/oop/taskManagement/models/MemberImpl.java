@@ -1,8 +1,8 @@
 package com.company.oop.taskManagement.models;
-
 import com.company.oop.taskManagement.models.contracts.Member;
 import com.company.oop.taskManagement.models.contracts.Task;
 import com.company.oop.taskManagement.utils.ValidationHelpers;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,19 +10,19 @@ import java.util.List;
 public class MemberImpl implements Member {
     public static final int MEMBER_MIN_NAME_LENGTH = 5;
     public static final int MEMBER_MAX_NAME_LENGTH = 15;
-    public static final String MEMBER_NAME_ERR_MESSAGE =
+    public static final java.lang.String MEMBER_NAME_ERR_MESSAGE =
             "Name should be between %d and %d length.".formatted(MEMBER_MIN_NAME_LENGTH, MEMBER_MAX_NAME_LENGTH);
-    private String name;
+    private java.lang.String name;
     private List<Task> tasks;
-    private List<String> activityHistory;
+    private List<java.lang.String> activityHistory;
 
-    public MemberImpl(String name) {
+    public MemberImpl(java.lang.String name) {
         setName(name);
         this.tasks = new ArrayList<>();
         this.activityHistory = new ArrayList<>();
     }
 
-    private void setName(String name) {
+    private void setName(java.lang.String name) {
         ValidationHelpers.validateIntRange(name.length(),
                 MEMBER_MIN_NAME_LENGTH,
                 MEMBER_MAX_NAME_LENGTH,
