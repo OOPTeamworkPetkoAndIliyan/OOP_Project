@@ -1,4 +1,4 @@
-package com.company.oop.taskManagement;
+package com.company.oop.taskManagement.models;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
