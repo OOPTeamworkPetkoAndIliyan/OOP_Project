@@ -13,7 +13,7 @@ public class StoryImpl extends TaskImpl implements Story {
 
     private Member assignee;
 
-    protected StoryImpl(int id, String title, String description, Member assignee, Size size, Priority priority) {
+    public StoryImpl(int id, String title, String description, Member assignee, Size size, Priority priority) {
         super( id,title, description);
         setAssignee(assignee);
         this.status = Status.NOT_DONE;
@@ -55,7 +55,7 @@ public class StoryImpl extends TaskImpl implements Story {
 
     @Override
     public void advanceStatus() {
-        
+
     }
 
     @Override

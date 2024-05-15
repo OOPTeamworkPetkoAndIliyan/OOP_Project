@@ -1,5 +1,6 @@
 package com.company.oop.taskManagement.models;
 
+import com.company.oop.taskManagement.models.contracts.Bug;
 import com.company.oop.taskManagement.models.contracts.Member;
 import com.company.oop.taskManagement.models.enums.BugEnums.Priority;
 import com.company.oop.taskManagement.models.enums.BugEnums.Severity;
@@ -8,7 +9,7 @@ import com.company.oop.taskManagement.models.enums.BugEnums.Status;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BugImpl extends TaskImpl{
+public class BugImpl extends TaskImpl implements Bug {
     private List<String> stepsToReproduce;
     private Priority priority;
     private Severity severity;
@@ -64,6 +65,16 @@ public class BugImpl extends TaskImpl{
 
     @Override
     public void showDetails() {
+
+    }
+
+    @Override
+    public void changePriority() {
+
+    }
+
+    @Override
+    public void changeSeverity() {
 
     }
 }
