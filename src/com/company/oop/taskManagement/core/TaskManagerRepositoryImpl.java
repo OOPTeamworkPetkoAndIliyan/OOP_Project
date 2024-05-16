@@ -141,13 +141,32 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
     }
 
     @Override
-    public Team getTeamByName(String teamName) {
+    public String showAllTeams() {
+        StringBuilder stringBuilder = new StringBuilder("Teams:");
         for (Team team : teams) {
-            if (team.getName().equals(teamName)){
-                return team;
-            }
+            stringBuilder.append(team.getName()).append(System.lineSeparator());
         }
-        throw new IllegalArgumentException(String.format("There is no such team with name: %s", teamName));
+        return stringBuilder.toString();
     }
 
+    @Override
+    public String showAllBoards() {
+        StringBuilder stringBuilder = new StringBuilder("Boards:");
+        for (Board board : boards) {
+            stringBuilder.append(board.getName()).append(System.lineSeparator());
+        }
+        return stringBuilder.toString();
+    }
+
+    @Override
+    public String showAllTeamMembers() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Team team : teams) {
+            stringBuilder.append("Members for team").append(team.getName()).append(":").append(System.lineSeparator());
+            for (Member member : members) {
+                stringBuilder.append(member.getName()).append(System.lineSeparator());
+            }
+        }
+        return stringBuilder.toString();
+    }
 }
