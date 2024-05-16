@@ -148,4 +148,13 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
         }
         return stringBuilder.toString();
     }
+
+    @Override
+    public String showAllBoards() {
+        StringBuilder stringBuilder = new StringBuilder("Boards:");
+        for (Board board : boards) {
+            stringBuilder.append(board.getName()).append(System.lineSeparator());
+        }
+        return stringBuilder.toString();
+    }
 }
