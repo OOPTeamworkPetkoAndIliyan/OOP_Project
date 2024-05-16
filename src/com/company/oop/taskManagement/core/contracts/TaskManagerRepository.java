@@ -25,4 +25,5 @@ public interface TaskManagerRepository {
      String showAllBoards();
      String showAllTeamMembers(String teamName);
     Team getTeamByName(String teamName);
+    Board getBoardByName(String boardName);
 }

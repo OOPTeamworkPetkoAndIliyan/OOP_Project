@@ -162,7 +162,7 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
     public String showAllTeamMembers(String teamName) {
         Team team = getTeamByName(teamName);
         StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("Members for team").append(team.getName()).append(":").append(System.lineSeparator());
+            stringBuilder.append("Members for team ").append(team.getName()).append(":").append(System.lineSeparator());
             for (Member member : team.getMembers()) {
                 stringBuilder.append(member.getName()).append(System.lineSeparator());
 
@@ -178,5 +178,15 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
             }
         }
         throw new IllegalArgumentException(String.format("There is no such team with name: %s", teamName));
+    }
+
+    @Override
+    public Board getBoardByName(String boardName) {
+        for (Board board : boards) {
+            if (board.getName().equals(boardName)){
+                return board;
+            }
+        }
+        throw new IllegalArgumentException(String.format("There is no such board with name: %s", boardName));
     }
 }
