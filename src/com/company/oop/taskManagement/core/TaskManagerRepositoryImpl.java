@@ -16,6 +16,7 @@ import java.util.List;
 public class TaskManagerRepositoryImpl implements TaskManagerRepository {
     private int nextId;
     private final List<Team> teams;
+    private final List<Board> boards;
     private final List<Member> members;
     private final List<Task> tasks;
     private final List<Bug> bugs;
@@ -30,6 +31,7 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
         this.bugs = new ArrayList<>();
         this.stories = new ArrayList<>();
         this.feedbacks = new ArrayList<>();
+        this.boards = new ArrayList<>();
     }
 
 //
@@ -98,6 +100,14 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
         teams.add(team);
         return team;
     }
+
+    @Override
+    public Board createBoard(String name) {
+        Board board = new BoardImpl(name);
+        boards.add(board);
+        return board;
+    }
+
     @Override
     public Member createMember(String name) {
         Member member = new MemberImpl(name);
@@ -120,4 +130,14 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
         }
         throw new IllegalArgumentException(String.format("There is no such member with this name: %s.", memberName));
     }
+
+    @Override
+    public  String showAllMembers() {
+        StringBuilder stringBuilder = new StringBuilder("Members: ");
+        for (Member member : members) {
+            stringBuilder.append(member.getName()).append(System.lineSeparator());
+        }
+        return stringBuilder.toString();
+    }
+
 }

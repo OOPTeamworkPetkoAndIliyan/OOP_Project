@@ -25,8 +25,6 @@ public class TaskManagerCommandFactoryImpl implements TaskManagerCommandFactory 
                 return new CreateNewStoryWithoutAssignee(taskManagerRepository);
             case CREATENEWSTORYWITHASSIGNEECOMMAND:
                 return new CreateNewStoryWithAssigneeCommand(taskManagerRepository);
-            case CREATENEWFEEDBACKCOMMAND:
-                return new CreateNewFeedbackCommand(taskManagerRepository);
             default:
                 throw new IllegalArgumentException();
         }

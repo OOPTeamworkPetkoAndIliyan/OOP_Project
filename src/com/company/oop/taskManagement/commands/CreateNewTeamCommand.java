@@ -17,7 +17,7 @@ public class CreateNewTeamCommand extends BaseCommand{
     @Override
     protected String executeCommand(List<String> parameters) {
         ValidationHelpers.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
-        String name = parameters.getFirst();
+        String name = parameters.get(0);
 
         return addNewTeam(name);
     }
