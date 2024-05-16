@@ -159,13 +159,13 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
     }
 
     @Override
-    public String showAllTeamMembers() {
+    public String showAllTeamMembers(String teamName) {
+        Team team = getTeamByName(teamName);
         StringBuilder stringBuilder = new StringBuilder();
-        for (Team team : teams) {
             stringBuilder.append("Members for team").append(team.getName()).append(":").append(System.lineSeparator());
-            for (Member member : members) {
+            for (Member member : team.getMembers()) {
                 stringBuilder.append(member.getName()).append(System.lineSeparator());
-            }
+
         }
         return stringBuilder.toString();
     }

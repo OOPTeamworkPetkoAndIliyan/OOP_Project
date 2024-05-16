@@ -5,7 +5,7 @@ import com.company.oop.taskManagement.core.contracts.TaskManagerRepository;
 import java.util.List;
 
 public class ShowAllTeamsCommand extends BaseCommand {
-    protected ShowAllTeamsCommand(TaskManagerRepository taskManagerRepository) {
+    public ShowAllTeamsCommand(TaskManagerRepository taskManagerRepository) {
         super(taskManagerRepository);
     }
 

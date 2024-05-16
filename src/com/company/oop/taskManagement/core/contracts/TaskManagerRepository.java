@@ -23,6 +23,6 @@ public interface TaskManagerRepository {
      String showAllMembers();
      String showAllTeams();
      String showAllBoards();
-     String showAllTeamMembers();
+     String showAllTeamMembers(String teamName);
     Team getTeamByName(String teamName);
 }

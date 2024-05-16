@@ -11,7 +11,7 @@ public class AddMemberToTeamCommand extends BaseCommand{
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
     public final static String MEMBER_ADDED_TO_TEAM_SUCCESSFULLY = "Member with name:(%s) was added to Team with name:(%s) successfully";
 
-    protected AddMemberToTeamCommand(TaskManagerRepository taskManagerRepository) {
+    public AddMemberToTeamCommand(TaskManagerRepository taskManagerRepository) {
         super(taskManagerRepository);
     }
 

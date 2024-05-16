@@ -31,6 +31,14 @@ public class TaskManagerCommandFactoryImpl implements TaskManagerCommandFactory 
                 return new CreateNewFeedbackCommand(taskManagerRepository);
             case SHOWALLMEMBERSCOMMAND:
                 return new ShowAllMembersCommand(taskManagerRepository);
+            case SHOWALLTEAMCOMMAND:
+                return new ShowAllTeamsCommand(taskManagerRepository);
+            case SHOWALLBOARDSCOMMAND:
+                return new ShowAllBoardsCommand(taskManagerRepository);
+            case SHOWALLTEAMMEMBERSCOMMAND:
+                return new ShowAllTeamMembers(taskManagerRepository);
+            case ADDMEMBERTOTEAMCOMMAND:
+                return new AddMemberToTeamCommand(taskManagerRepository);
             default:
                 throw new IllegalArgumentException();
         }
