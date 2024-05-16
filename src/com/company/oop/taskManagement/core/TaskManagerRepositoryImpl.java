@@ -169,4 +169,14 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
         }
         return stringBuilder.toString();
     }
+
+    @Override
+    public Team getTeamByName(String teamName) {
+        for (Team team : teams) {
+            if (team.getName().equals(teamName)){
+                return team;
+            }
+        }
+        throw new IllegalArgumentException(String.format("There is no such team with name: %s", teamName));
+    }
 }
