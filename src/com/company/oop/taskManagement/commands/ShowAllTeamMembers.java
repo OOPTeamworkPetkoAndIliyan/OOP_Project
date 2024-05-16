@@ -4,8 +4,8 @@ import com.company.oop.taskManagement.core.contracts.TaskManagerRepository;
 
 import java.util.List;
 
-public class ShowAllBoardsCommand extends BaseCommand{
-    public ShowAllBoardsCommand(TaskManagerRepository taskManagerRepository) {
+public class ShowAllTeamMembers extends  BaseCommand{
+    protected ShowAllTeamMembers(TaskManagerRepository taskManagerRepository) {
         super(taskManagerRepository);
     }
 
@@ -14,6 +14,6 @@ public class ShowAllBoardsCommand extends BaseCommand{
         if (!parameters.isEmpty()) {
             throw new IllegalArgumentException("There should be non parameters");
         }
-        return getTaskManagerRepository().showAllTeams();
+        return getTaskManagerRepository().showAllTeamMembers();
     }
 }
