@@ -21,8 +21,10 @@ public class TaskManagerCommandFactoryImpl implements TaskManagerCommandFactory 
                 return new CreateNewMemberCommand(taskManagerRepository);
             case CREATENEWTEAMCOMMAND:
                 return new CreateNewTeamCommand(taskManagerRepository);
-            case CREATENEWSTORYWITHOUTASSIGNEE:
+            case CREATENEWSTORYWITHOUTASSIGNEECOMMAND:
                 return new CreateNewStoryWithoutAssignee(taskManagerRepository);
+            case CREATENEWSTORYWITHASSIGNEECOMMAND:
+                return new CreateNewStoryWithAssigneeCommand(taskManagerRepository);
             default:
                 throw new IllegalArgumentException();
         }

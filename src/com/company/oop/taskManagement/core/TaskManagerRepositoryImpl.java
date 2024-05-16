@@ -77,7 +77,16 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
     @Override
     public Story createStoryWithoutAssignee(String title, String description, Priority priority, Size size) {
         Story story = new StoryImpl(++nextId, title, description,
-                size, priority);
+                priority, size);
+        stories.add(story);
+        return story;
+    }
+
+    @Override
+    public Story createStoryWithAssignee(String title, String description, Priority priority, Size size, String memberName) {
+        Story story = new StoryImpl(++nextId, title, description, priority, size);
+        Member member = getMemberByName(memberName);
+        story.setAssignee(member);
         stories.add(story);
         return story;
     }

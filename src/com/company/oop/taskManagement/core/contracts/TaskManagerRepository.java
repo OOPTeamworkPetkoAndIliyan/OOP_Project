@@ -16,6 +16,7 @@ public interface TaskManagerRepository {
     Bug createBugWithAssignee(String title, String description,
                                      Priority priority, Severity severity, String memberName);
     Story createStoryWithoutAssignee(String title, String description, Priority priority, Size size);
+    Story createStoryWithAssignee(String title, String description, Priority priority, Size size, String memberName);
     Feedback createFeedback(String title, String description, int rating);
     Member getMemberByName(String memberName);
 }

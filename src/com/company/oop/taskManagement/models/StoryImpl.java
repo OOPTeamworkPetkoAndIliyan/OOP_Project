@@ -1,6 +1,7 @@
 package com.company.oop.taskManagement.models;
 
 
+import com.company.oop.taskManagement.models.contracts.Member;
 import com.company.oop.taskManagement.models.contracts.Story;
 import com.company.oop.taskManagement.models.enums.Priority;
 import com.company.oop.taskManagement.models.enums.Size;
@@ -11,21 +12,17 @@ public class StoryImpl extends TaskImpl implements Story {
     private Size size;
     private Priority priority;
 
-    private String assignee;
+    private Member assignee;
 
-    public StoryImpl(int id, String title, String description, Size size, Priority priority) {
+    public StoryImpl(int id, String title, String description, Priority priority, Size size) {
         super( id,title, description);
         setAssignee(assignee);
         this.storyStatus = StoryStatus.NOT_DONE;
         this.size = size;
         this.priority = priority;
     }
-    public String getAssignee() {
+    public Member getAssignee() {
         return assignee;
-    }
-
-    public void setAssignee(String assignee) {
-        this.assignee = assignee;
     }
 
     public StoryStatus getStatus() {
@@ -41,6 +38,10 @@ public class StoryImpl extends TaskImpl implements Story {
     }
 
 
+    @Override
+    public void setAssignee(Member assignee) {
+        this.assignee = assignee;
+    }
 
     @Override
     public void changePriority() {
