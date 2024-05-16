@@ -21,4 +21,6 @@ public interface TaskManagerRepository {
     Feedback createFeedback(String title, String description, int rating);
     Member getMemberByName(String memberName);
      String showAllMembers();
+
+    Team getTeamByName(String teamName);
 }
