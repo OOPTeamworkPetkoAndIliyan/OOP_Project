@@ -65,7 +65,7 @@ public class TaskManagerEngineImpl implements TaskManagerEngine {
      * @return The name of the command to be executed
      */
     private String extractCommandName(String inputLine) {
-        return inputLine.split(" ")[0];
+        return inputLine.split("--")[0];
     }
 
     /**
@@ -80,7 +80,7 @@ public class TaskManagerEngineImpl implements TaskManagerEngine {
         if (inputLine.contains(COMMENT_OPEN_SYMBOL)) {
             return extractCommentParameters(inputLine);
         }
-        String[] commandParts = inputLine.split(" ");
+        String[] commandParts = inputLine.split("--");
         List<String> parameters = new ArrayList<>();
         for (int i = 1; i < commandParts.length; i++) {
             parameters.add(commandParts[i]);

@@ -37,6 +37,7 @@ public class MemberImpl implements Member {
             throw new IllegalArgumentException(String.format("There is already an assigned task with ID: %d",task.getId()));
         }
         tasks.add(task);
+        history.add(new EventLog(String.format("Task with ID: %d, was assigned to this member", task.getId())));
     }
 
     @Override
@@ -45,6 +46,7 @@ public class MemberImpl implements Member {
             throw new IllegalArgumentException(String.format("There is no existing task with ID: %d",task.getId()));
         }
         tasks.remove(task);
+        history.add(new EventLog(String.format("Task with ID: %d, was unassigned to this member", task.getId())));
     }
 
     @Override
@@ -58,8 +60,13 @@ public class MemberImpl implements Member {
     }
 
     @Override
-    public void showActivity() {
-
+    public String showActivity() {
+        StringBuilder stringBuilder = new StringBuilder("Member's activity: ");
+        stringBuilder.append(System.lineSeparator());
+        for (EventLog eventLog : history) {
+            stringBuilder.append(eventLog.viewInfo()).append(System.lineSeparator());
+        }
+        return stringBuilder.toString();
     }
 }
 // foreach(Member member : members){

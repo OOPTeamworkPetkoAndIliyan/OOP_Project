@@ -72,7 +72,7 @@ public class BugImpl extends TaskImpl implements Bug {
     }
 
     @Override
-    public void showActivity() {
-
+    public String showActivity() {
+        return null;
     }
 }

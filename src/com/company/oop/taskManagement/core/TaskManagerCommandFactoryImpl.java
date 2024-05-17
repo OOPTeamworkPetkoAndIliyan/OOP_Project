@@ -63,6 +63,8 @@ public class TaskManagerCommandFactoryImpl implements TaskManagerCommandFactory 
                 return new UnAssignTaskToMemberCommand(taskManagerRepository);
             case ADDCOMMENTTOTASKCOMMAND:
                 return new AddCommentToTaskCommand(taskManagerRepository);
+            case SHOWMEMBERACTIVITYCOMMAND:
+                return new ShowMemberActivityCommand(taskManagerRepository);
             default:
                 throw new IllegalArgumentException();
         }

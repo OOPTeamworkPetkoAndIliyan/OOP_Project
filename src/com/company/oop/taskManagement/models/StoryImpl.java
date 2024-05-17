@@ -73,7 +73,7 @@ public class StoryImpl extends TaskImpl implements Story {
     }
 
     @Override
-    public void showActivity() {
-
+    public String showActivity() {
+        return null;
     }
 }

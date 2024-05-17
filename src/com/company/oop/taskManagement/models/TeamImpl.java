@@ -43,10 +43,8 @@ public class TeamImpl implements Team {
     }
 
     @Override
-    public void showActivity() {
-    // foreach(Member member : this.members){
-        //
-        // }
+    public String showActivity() {
+        return null;
     }
 
     @Override

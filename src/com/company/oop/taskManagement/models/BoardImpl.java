@@ -51,7 +51,7 @@ public class BoardImpl implements Board {
     }
 
     @Override
-    public void showActivity() {
-
+    public String showActivity() {
+        return null;
     }
 }

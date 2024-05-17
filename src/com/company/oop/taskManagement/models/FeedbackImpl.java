@@ -41,7 +41,7 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
     }
 
     @Override
-    public void showActivity() {
-
+    public String showActivity() {
+        return null;
     }
 }
