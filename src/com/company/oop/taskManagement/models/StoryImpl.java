@@ -60,15 +60,15 @@ public class StoryImpl extends TaskImpl implements Story {
 
     @Override
     public void showDetails() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Story Details:\n");
-        sb.append("ID: ").append(getId()).append("\n");
-        sb.append("Title: ").append(getTitle()).append("\n");
-        sb.append("Description: ").append(getDescription()).append("\n");
-        sb.append("Status: ").append(getStatus()).append("\n");
-        sb.append("Assignee: ").append(getAssignee()).append("\n");
-        sb.append("Priority: ").append(getPriority()).append("\n");
-        sb.append("Size: ").append(getSize()).append("\n");
-        System.out.println(sb);
+//        StringBuilder sb = new StringBuilder();
+//        sb.append("Story Details:\n");
+//        sb.append("ID: ").append(getId()).append("\n");
+//        sb.append("Title: ").append(getTitle()).append("\n");
+//        sb.append("Description: ").append(getDescription()).append("\n");
+//        sb.append("Status: ").append(getStatus()).append("\n");
+//        sb.append("Assignee: ").append(getAssignee()).append("\n");
+//        sb.append("Priority: ").append(getPriority()).append("\n");
+//        sb.append("Size: ").append(getSize()).append("\n");
+//        System.out.println(sb);
     }
 }

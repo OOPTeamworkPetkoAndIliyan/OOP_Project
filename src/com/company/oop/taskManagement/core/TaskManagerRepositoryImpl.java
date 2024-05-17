@@ -202,7 +202,7 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
                 return task;
             }
         }
-        throw new IllegalArgumentException("There is no such task with ID: %d");
+        throw new IllegalArgumentException( String.format("There is no such task with ID: %d", taskID));
     }
 
     @Override
