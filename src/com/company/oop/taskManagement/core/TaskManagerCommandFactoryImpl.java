@@ -43,6 +43,20 @@ public class TaskManagerCommandFactoryImpl implements TaskManagerCommandFactory 
                 return new AddBoardToTeamCommand(taskManagerRepository);
             case CHANGEPRIORITYOFBUGCOMMAND:
                 return new ChangePriorityOfBugCommand(taskManagerRepository);
+            case CHANGESEVERITYOFBUGCOMMAND:
+                return new ChangeSeverityOfBugCommand(taskManagerRepository);
+            case CHANGESTATUSOFBUGCOMMAND:
+                return new ChangeStatusOfBugCommand(taskManagerRepository);
+            case CHANGEPRIORITYOFSTORYCOMMAND:
+                return new ChangePriorityOfStoryCommand(taskManagerRepository);
+            case CHANGESIZEOFSTORYCOMMAND:
+                return new ChangeSizeOfStoryCommand(taskManagerRepository);
+            case CHANGESTATUSOFSTORYCOMMAND:
+                return new ChangeStatusOfStoryCommand(taskManagerRepository);
+            case CHANGERATINGOFFEEDBACKCOMMAND:
+                return new ChangeRatingOfFeedbackCommand(taskManagerRepository);
+            case CHANGESTATUSOFFEEDBACKCOMMAND:
+                return new ChangeStatusOfFeedbackCommand(taskManagerRepository);
             default:
                 throw new IllegalArgumentException();
         }
