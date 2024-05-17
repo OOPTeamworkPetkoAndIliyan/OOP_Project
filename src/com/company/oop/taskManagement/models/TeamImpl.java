@@ -51,15 +51,21 @@ public class TeamImpl implements Team {
 
     @Override
     public void addMember(Member member) {
-        //дали мембъра съществува
-        //addMember 0 0
-        //addMember 0 levski
-        //addMember -u Ilian Karagyozov -t levski
+        for (Member member1 : members) {
+            if (member1.getName().equals(member.getName())){
+                throw new IllegalArgumentException(String.format
+                        ("There is already existing member with name: %s in this team.",member.getName()));
+            }
+        }
         members.add(member);
     }
 
     @Override
-    public void removeMember(String member) {
+    public void removeMember(Member member) {
+        if (!members.contains(member)){
+            throw new IllegalArgumentException(String.format
+                    ("There is not existing member with name: %s in this team.", member.getName()));
+        }
         members.remove(member);
 
     }

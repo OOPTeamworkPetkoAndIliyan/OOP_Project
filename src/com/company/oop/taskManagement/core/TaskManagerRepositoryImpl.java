@@ -100,6 +100,11 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
 
     @Override
     public Team createTeam(String name){
+        for (Team team : teams) {
+            if (team.getName().equals(name)){
+                throw new IllegalArgumentException(String.format("There is already an existing team with name: %s", name));
+            }
+        }
         Team team = new TeamImpl(name);
         teams.add(team);
         return team;
@@ -114,6 +119,11 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
 
     @Override
     public Member createMember(String name) {
+        for (Member member : members) {
+            if (member.getName().equals(name)){
+                throw new IllegalArgumentException(String.format("There is already an existing member with name: %s", name));
+            }
+        }
         Member member = new MemberImpl(name);
         members.add(member);
         return member;
@@ -135,6 +145,7 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
         }
         throw new IllegalArgumentException(String.format("There is no such member with this name: %s.", memberName));
     }
+
 
     @Override
     public  String showAllMembers() {

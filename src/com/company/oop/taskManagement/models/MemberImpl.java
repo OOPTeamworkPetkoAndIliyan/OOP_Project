@@ -32,11 +32,17 @@ public class MemberImpl implements Member {
 
     @Override
     public void addTask(Task task) {
+        if (tasks.contains(task)){
+            throw new IllegalArgumentException(String.format("There is already an assigned task with ID: %d",task.getId()));
+        }
         tasks.add(task);
     }
 
     @Override
     public void removeTask(Task task) {
+        if (!tasks.contains(task)){
+            throw new IllegalArgumentException(String.format("There is no existing task with ID: %d",task.getId()));
+        }
         tasks.remove(task);
     }
 
