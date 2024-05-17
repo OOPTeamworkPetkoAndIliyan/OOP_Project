@@ -38,7 +38,7 @@ public class BugImpl extends TaskImpl implements Bug {
     public List<String> getStepsToReproduce() {
         return new ArrayList<>(stepsToReproduce);
     }
-
+    @Override
     public Priority getPriority() {
         return priority;
     }
@@ -68,8 +68,8 @@ public class BugImpl extends TaskImpl implements Bug {
     }
 
     @Override
-    public void changePriority() {
-
+    public void changePriority(Priority priority) {
+        this.priority = priority;
     }
 
     @Override

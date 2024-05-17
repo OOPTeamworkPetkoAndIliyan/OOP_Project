@@ -189,4 +189,14 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
         }
         throw new IllegalArgumentException(String.format("There is no such board with name: %s", boardName));
     }
+
+    @Override
+    public Bug getBugByID(int bugID) {
+        for (Bug bug : bugs) {
+            if (bug.getId() == bugID){
+                return bug;
+            }
+        }
+        throw new IllegalArgumentException(String.format("There is no bug with ID: %d", bugID));
+    }
 }

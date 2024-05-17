@@ -26,4 +26,6 @@ public interface TaskManagerRepository {
      String showAllTeamMembers(String teamName);
     Team getTeamByName(String teamName);
     Board getBoardByName(String boardName);
+
+    Bug getBugByID(int bugID);
 }
