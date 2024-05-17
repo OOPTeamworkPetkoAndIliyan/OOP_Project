@@ -1,6 +1,6 @@
 package com.company.oop.taskManagement.models.contracts;
 
-public interface Task extends Identifiable {
+public interface Task extends Identifiable, Commentable {
     String getTitle();
     String getDescription();
     void addComment(Comment comment);

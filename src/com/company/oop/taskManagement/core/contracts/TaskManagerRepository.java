@@ -19,6 +19,7 @@ public interface TaskManagerRepository {
     Story createStoryWithoutAssignee(String title, String description, Priority priority, Size size);
     Story createStoryWithAssignee(String title, String description, Priority priority, Size size, String memberName);
     Feedback createFeedback(String title, String description, int rating);
+    Comment createComment(String author, String content);
     Member getMemberByName(String memberName);
      String showAllMembers();
      String showAllTeams();
