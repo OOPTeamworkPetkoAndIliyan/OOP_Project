@@ -14,12 +14,12 @@ public class MemberImpl implements Member {
             "Name should be between %d and %d length.".formatted(MEMBER_MIN_NAME_LENGTH, MEMBER_MAX_NAME_LENGTH);
     private String name;
     private List<Task> tasks;
-    private List<String> activityHistory;
+    private List<EventLog> history;
 
     public MemberImpl(String name) {
         setName(name);
         this.tasks = new ArrayList<>();
-        this.activityHistory = new ArrayList<>();
+        this.history = new ArrayList<>();
     }
 
     private void setName(String name) {
@@ -28,6 +28,7 @@ public class MemberImpl implements Member {
                 MEMBER_MAX_NAME_LENGTH,
                 MEMBER_NAME_ERR_MESSAGE);
         this.name = name;
+
     }
 
     @Override

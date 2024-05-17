@@ -71,4 +71,9 @@ public class StoryImpl extends TaskImpl implements Story {
 //        sb.append("Size: ").append(getSize()).append("\n");
 //        System.out.println(sb);
     }
+
+    @Override
+    public void showActivity() {
+
+    }
 }

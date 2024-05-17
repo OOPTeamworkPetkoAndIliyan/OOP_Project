@@ -70,4 +70,9 @@ public class BugImpl extends TaskImpl implements Bug {
     public void changeSeverity(Severity severity) {
         this.severity = severity;
     }
+
+    @Override
+    public void showActivity() {
+
+    }
 }

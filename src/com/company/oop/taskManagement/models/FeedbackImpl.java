@@ -39,4 +39,9 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
     public FeedbackStatus getStatus() {
         return feedbackStatus;
     }
+
+    @Override
+    public void showActivity() {
+
+    }
 }
