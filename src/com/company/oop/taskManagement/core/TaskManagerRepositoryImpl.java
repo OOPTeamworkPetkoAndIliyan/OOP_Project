@@ -199,4 +199,26 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
         }
         throw new IllegalArgumentException(String.format("There is no bug with ID: %d", bugID));
     }
+
+    @Override
+    public Story getStoryByID(int storyID) {
+        for (Story story : stories) {
+            if (story.getId() == storyID){
+                return story;
+            }
+        }
+        throw new IllegalArgumentException(String.format("There is no story with ID: %d", storyID));
+    }
+
+    @Override
+    public Feedback getFeedbackByID(int feedbackID) {
+        for (Feedback feedback : feedbacks) {
+            if (feedback.getId() == feedbackID){
+                return feedback;
+            }
+        }
+        throw new IllegalArgumentException(String.format("There is no feedback with ID: %d", feedbackID));
+    }
+
+
 }

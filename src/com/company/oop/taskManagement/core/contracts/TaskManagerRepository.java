@@ -28,4 +28,6 @@ public interface TaskManagerRepository {
     Board getBoardByName(String boardName);
 
     Bug getBugByID(int bugID);
+    Story getStoryByID(int storyID);
+    Feedback getFeedbackByID(int storyID);
 }
