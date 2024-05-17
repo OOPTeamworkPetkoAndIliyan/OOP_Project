@@ -24,7 +24,7 @@ public class StoryImpl extends TaskImpl implements Story {
     public Member getAssignee() {
         return assignee;
     }
-
+    @Override
     public StoryStatus getStatus() {
         return storyStatus;
     }
@@ -53,7 +53,10 @@ public class StoryImpl extends TaskImpl implements Story {
         this.size = size;
     }
 
-
+    @Override
+    public void changeStatus(StoryStatus storyStatus) {
+        this.storyStatus = storyStatus;
+    }
 
     @Override
     public void showDetails() {
