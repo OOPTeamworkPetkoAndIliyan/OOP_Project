@@ -6,12 +6,12 @@ import com.company.oop.taskManagement.models.enums.FeedbackEnums.FeedbackStatus;
 
 public class FeedbackImpl extends TaskImpl implements Feedback {
     private int rating;
-    private FeedbackStatus status;
+    private FeedbackStatus feedbackStatus;
 
     public FeedbackImpl(int id, String title, String description, int rating) {
         super(id, title, description);
         this.rating = rating;
-        this.status = FeedbackStatus.NEW;
+        this.feedbackStatus = FeedbackStatus.NEW;
     }
 
 
@@ -28,5 +28,15 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
     @Override
     public void changeRating(int rating) {
         this.rating = rating;
+    }
+
+    @Override
+    public void changeStatus(FeedbackStatus feedbackStatus) {
+        this.feedbackStatus = feedbackStatus;
+    }
+
+    @Override
+    public FeedbackStatus getStatus() {
+        return feedbackStatus;
     }
 }
