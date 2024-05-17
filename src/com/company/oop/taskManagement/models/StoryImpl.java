@@ -28,7 +28,7 @@ public class StoryImpl extends TaskImpl implements Story {
     public StoryStatus getStatus() {
         return storyStatus;
     }
-
+    @Override
     public Size getSize() {
         return size;
     }
@@ -49,19 +49,11 @@ public class StoryImpl extends TaskImpl implements Story {
     }
 
     @Override
-    public void changeSize() {
-
+    public void changeSize(Size size) {
+        this.size = size;
     }
 
-    @Override
-    public void advanceStatus() {
 
-    }
-
-    @Override
-    public void revertStatus() {
-
-    }
 
     @Override
     public void showDetails() {

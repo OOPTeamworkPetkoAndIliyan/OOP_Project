@@ -14,15 +14,6 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
         this.status = FeedbackStatus.NEW;
     }
 
-    @Override
-    public void advanceStatus() {
-
-    }
-
-    @Override
-    public void revertStatus() {
-
-    }
 
     @Override
     public void showDetails() {
