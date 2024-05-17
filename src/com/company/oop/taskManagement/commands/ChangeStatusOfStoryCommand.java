@@ -13,7 +13,7 @@ import java.util.List;
 public class ChangeStatusOfStoryCommand extends BaseCommand{
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
     public static final String ID_ERROR_MESSAGE = "There is no such ID";
-    public static final String THE_STATUS_OF_BUG_WAS_CHANGED_SUCCESSFULLY = "The status of Bug with ID: %d, was changed to %s";
+    public static final String THE_STATUS_OF_STORY_WAS_CHANGED_SUCCESSFULLY = "The status of Story with ID: %d, was changed to %s";
 
     public ChangeStatusOfStoryCommand(TaskManagerRepository taskManagerRepository) {
         super(taskManagerRepository);
@@ -30,6 +30,6 @@ public class ChangeStatusOfStoryCommand extends BaseCommand{
     private String changeStatusOfStory(int storyID, StoryStatus storyStatus) {
         Story story = getTaskManagerRepository().getStoryByID(storyID);
         story.changeStatus(storyStatus);
-        return String.format(THE_STATUS_OF_BUG_WAS_CHANGED_SUCCESSFULLY, story.getId(), story.getStatus());
+        return String.format(THE_STATUS_OF_STORY_WAS_CHANGED_SUCCESSFULLY, story.getId(), story.getStatus());
     }
 }

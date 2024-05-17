@@ -65,6 +65,7 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
         Bug bug = new BugImpl(++nextId, title, description,
                 priority, severity);
         bugs.add(bug);
+        tasks.add(bug);
         return bug;
     }
     public Bug createBugWithAssignee(String title, String description,
@@ -74,6 +75,7 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
         Member member = getMemberByName(memberName);
         bug.setAssignee(member);
         bugs.add(bug);
+        tasks.add(bug);
         return bug;
     }
 
@@ -82,6 +84,7 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
         Story story = new StoryImpl(++nextId, title, description,
                 priority, size);
         stories.add(story);
+        tasks.add(story);
         return story;
     }
 
@@ -91,6 +94,7 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
         Member member = getMemberByName(memberName);
         story.setAssignee(member);
         stories.add(story);
+        tasks.add(story);
         return story;
     }
 
@@ -118,6 +122,7 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
     public Feedback createFeedback(String title, String description, int rating) {
         Feedback feedback = new FeedbackImpl(++nextId, title, description, rating);
         feedbacks.add(feedback);
+        tasks.add(feedback);
         return feedback;
     }
 
@@ -188,6 +193,16 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
             }
         }
         throw new IllegalArgumentException(String.format("There is no such board with name: %s", boardName));
+    }
+
+    @Override
+    public Task getTaskByID(int taskID) {
+        for (Task task : tasks) {
+            if (task.getId() == taskID){
+                return task;
+            }
+        }
+        throw new IllegalArgumentException("There is no such task with ID: %d");
     }
 
     @Override

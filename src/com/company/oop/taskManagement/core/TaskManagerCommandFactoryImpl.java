@@ -57,6 +57,10 @@ public class TaskManagerCommandFactoryImpl implements TaskManagerCommandFactory 
                 return new ChangeRatingOfFeedbackCommand(taskManagerRepository);
             case CHANGESTATUSOFFEEDBACKCOMMAND:
                 return new ChangeStatusOfFeedbackCommand(taskManagerRepository);
+            case ASSIGNTASKTOMEMBERCOMMAND:
+                return new AssignTaskToMemberCommand(taskManagerRepository);
+            case UNASSIGNTASKTOMEMBERCOMMAND:
+                return new UnAssignTaskToMemberCommand(taskManagerRepository);
             default:
                 throw new IllegalArgumentException();
         }
