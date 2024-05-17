@@ -32,7 +32,7 @@ public class StoryImpl extends TaskImpl implements Story {
     public Size getSize() {
         return size;
     }
-
+    @Override
     public Priority getPriority() {
         return priority;
     }
@@ -44,8 +44,8 @@ public class StoryImpl extends TaskImpl implements Story {
     }
 
     @Override
-    public void changePriority() {
-
+    public void changePriority(Priority priority) {
+        this.priority = priority;
     }
 
     @Override
