@@ -29,5 +29,5 @@ public interface TaskManagerRepository {
 
     Bug getBugByID(int bugID);
     Story getStoryByID(int storyID);
-    Feedback getFeedbackByID(int storyID);
+    Feedback getFeedbackByID(int feedbackID);
 }

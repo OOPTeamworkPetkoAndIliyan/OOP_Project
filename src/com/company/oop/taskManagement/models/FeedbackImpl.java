@@ -26,7 +26,7 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
     }
 
     @Override
-    public void changeRating() {
-
+    public void changeRating(int rating) {
+        this.rating = rating;
     }
 }
