@@ -35,6 +35,11 @@ public class BugImpl extends TaskImpl implements Bug {
         this.assignee = assignee;
     }
 
+    @Override
+    public void changeStatus(BugStatus bugStatus) {
+        this.bugStatus = bugStatus;
+    }
+
     public List<String> getStepsToReproduce() {
         return new ArrayList<>(stepsToReproduce);
     }
@@ -42,24 +47,13 @@ public class BugImpl extends TaskImpl implements Bug {
     public Priority getPriority() {
         return priority;
     }
-
+    @Override
     public Severity getSeverity() {
         return severity;
     }
-
+    @Override
     public BugStatus getStatus() {
         return bugStatus;
-    }
-
-
-    @Override
-    public void advanceStatus() {
-
-    }
-
-    @Override
-    public void revertStatus() {
-
     }
 
     @Override
@@ -73,7 +67,7 @@ public class BugImpl extends TaskImpl implements Bug {
     }
 
     @Override
-    public void changeSeverity() {
-
+    public void changeSeverity(Severity severity) {
+        this.severity = severity;
     }
 }

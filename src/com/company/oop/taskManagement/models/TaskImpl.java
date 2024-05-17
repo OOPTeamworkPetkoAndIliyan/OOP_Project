@@ -69,12 +69,6 @@ public abstract class TaskImpl implements Task {
     }
 
     @Override
-    public abstract void advanceStatus();
-
-    @Override
-    public abstract void revertStatus();
-
-    @Override
     public void addComment(Comment comment) {
         comments.add(comment);
     }
