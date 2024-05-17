@@ -13,9 +13,9 @@ public class TaskManagerCommandFactoryImpl implements TaskManagerCommandFactory 
     public Command createCommandFromCommandName(String commandTypeAsString, TaskManagerRepository taskManagerRepository) {
         CommandType commandType = ParsingHelpers.tryParseEnum(commandTypeAsString, CommandType.class);
         switch (commandType) {
-            case CREATENEWBUGWITHOUTASSIGNEE:
+            case CREATENEWBUGWITHOUTASSIGNEECOMMAND:
                 return new CreateNewBugWithoutAssigneeCommand(taskManagerRepository);
-            case CREATENEWBUGWITHASSIGNEE:
+            case CREATENEWBUGWITHASSIGNEECOMMAND:
                 return new CreateNewBugWithAssigneeCommand(taskManagerRepository);
             case CREATENEWMEMBERCOMMAND:
                 return new CreateNewMemberCommand(taskManagerRepository);
