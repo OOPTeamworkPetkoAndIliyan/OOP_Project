@@ -33,33 +33,6 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
         this.feedbacks = new ArrayList<>();
         this.boards = new ArrayList<>();
     }
-
-//
-//    public List<Team> getTeams() {
-//        return new ArrayList<>(teams);
-//    }
-//
-//    public List<Member> getMembers() {
-//        return new ArrayList<>(members);
-//    }
-//
-//    public List<Task> getTasks() {
-//        return new ArrayList<>(tasks);
-//    }
-//
-//    public List<Bug> getBugs() {
-//        return new ArrayList<>(bugs);
-//    }
-//
-//    public List<Story> getStories() {
-//        return new ArrayList<>(stories);
-//    }
-//
-//    public List<Feedback> getFeedbacks() {
-//        return new ArrayList<>(feedbacks);
-//    }
-
-
     @Override
     public Bug createBug(String title, String description, Priority priority, Severity severity) {
         Bug bug = new BugImpl(++nextId, title, description,
@@ -134,6 +107,11 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
         feedbacks.add(feedback);
         tasks.add(feedback);
         return feedback;
+    }
+
+    @Override
+    public Comment createComment(String author, String content) {
+        return new CommentImpl(author, content);
     }
 
     @Override
