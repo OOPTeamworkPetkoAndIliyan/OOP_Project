@@ -9,7 +9,7 @@ import java.util.List;
 
 public class CreateNewTeamCommand extends BaseCommand{
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 1;
-    public final static String TEAM_CREATED_SUCCESSFULLY = "Team with name:(%s) was created successfully";
+    public final static String TEAM_CREATED_SUCCESSFULLY = "Team with name: %s was created successfully";
     public CreateNewTeamCommand(TaskManagerRepository taskManagerRepository) {
         super(taskManagerRepository);
     }
