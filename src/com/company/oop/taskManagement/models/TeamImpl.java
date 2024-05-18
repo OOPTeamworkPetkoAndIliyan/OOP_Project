@@ -17,6 +17,7 @@ public class TeamImpl implements Team {
     private String name;
     private final List<Member> members = new ArrayList<>();
     private final List<Board> boards = new ArrayList<>();
+    private final List<EventLog> history = new ArrayList<>();
 
     public TeamImpl(String name) {
         setName(name);
@@ -44,7 +45,12 @@ public class TeamImpl implements Team {
 
     @Override
     public String showActivity() {
-        return null;
+        StringBuilder stringBuilder = new StringBuilder("Team's activity: ");
+        stringBuilder.append(System.lineSeparator());
+        for (EventLog eventLog : history) {
+            stringBuilder.append(eventLog.viewInfo()).append(System.lineSeparator());
+        }
+        return stringBuilder.toString();
     }
 
     @Override
@@ -56,6 +62,7 @@ public class TeamImpl implements Team {
             }
         }
         members.add(member);
+        history.add(new EventLog(String.format("Member with name %s was added to the team", member.getName())));
     }
 
     @Override
@@ -65,16 +72,26 @@ public class TeamImpl implements Team {
                     ("There is not existing member with name: %s in this team.", member.getName()));
         }
         members.remove(member);
-
+        history.add(new EventLog(String.format("Member with name %s was removed from the team", member.getName())));
     }
 
     @Override
     public void addBoard(Board board) {
+        for (Board board1 : boards) {
+            if (board.getName().equals(board1.getName())){
+                throw new IllegalArgumentException(String.format("There is already a board with name: %s in the team", board.getName()));
+            }
+        }
         boards.add(board);
+        history.add(new EventLog(String.format("Board with name %s was added to the team", board.getName())));
     }
 
     @Override
     public void removeBoard(Board board) {
+        if (!boards.contains(board)){
+            throw new IllegalArgumentException(String.format("There is no board with name %s to be removed", board.getName()));
+        }
         boards.remove(board);
+        history.add(new EventLog(String.format("Board with name %s was removed from the team", board.getName())));
     }
 }
