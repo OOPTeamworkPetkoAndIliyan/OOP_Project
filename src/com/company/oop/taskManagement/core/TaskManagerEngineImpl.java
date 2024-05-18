@@ -1,9 +1,11 @@
 package com.company.oop.taskManagement.core;
 
 import com.company.oop.taskManagement.commands.contracts.Command;
+import com.company.oop.taskManagement.commands.enums.CommandType;
 import com.company.oop.taskManagement.core.contracts.TaskManagerCommandFactory;
 import com.company.oop.taskManagement.core.contracts.TaskManagerEngine;
 import com.company.oop.taskManagement.core.contracts.TaskManagerRepository;
+import com.company.oop.taskManagement.utils.DisplayCommands;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,9 +30,14 @@ public class TaskManagerEngineImpl implements TaskManagerEngine {
 
     public void start() {
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Please type 'manual' to show all commands or type 'exit' to exit the program.");
         while (true) {
             try {
                 String inputLine = scanner.nextLine();
+                if (inputLine.equals("manual")){
+                    DisplayCommands.displayAllCommands();
+                    continue;
+                }
                 if (inputLine.isBlank()) {
                     print(EMPTY_COMMAND_ERROR);
                     continue;
