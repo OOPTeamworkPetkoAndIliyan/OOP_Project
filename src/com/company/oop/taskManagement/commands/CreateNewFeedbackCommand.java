@@ -15,8 +15,8 @@ import java.util.List;
 public class CreateNewFeedbackCommand extends BaseCommand {
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 3;
     public static final String INVALID_RATING_MESSAGE = "Invalid rating";
-    public final static String FEEDBACK_CREATED_SUCCESSFULLY = "Feedback with title: %s was created successfully";
-    public final static String FEEDBACK_CREATED_SUCCESSFULLY_IN_BOARD = "Feedback with title: %s was created successfully in board with name: %s";
+    public final static String FEEDBACK_CREATED_SUCCESSFULLY = "Feedback with ID: %d and title: %s was created successfully";
+    public final static String FEEDBACK_CREATED_SUCCESSFULLY_IN_BOARD = "Feedback with ID: %d and title: %s was created successfully in board with name: %s";
     public CreateNewFeedbackCommand(TaskManagerRepository taskManagerRepository) {
         super(taskManagerRepository);
     }
@@ -38,12 +38,12 @@ public class CreateNewFeedbackCommand extends BaseCommand {
     private String addNewFeedbackInBoard(String title, String description, int rating, String boardName) {
         Board board = getTaskManagerRepository().getBoardByName(boardName);
         Feedback feedback = createNewFeedback(title, description, rating);
-        return String.format(FEEDBACK_CREATED_SUCCESSFULLY_IN_BOARD, feedback.getTitle(), board.getName());
+        return String.format(FEEDBACK_CREATED_SUCCESSFULLY_IN_BOARD,feedback.getId(), feedback.getTitle(), board.getName());
     }
 
     private String addNewFeedback(String title, String description, int rating){
         Feedback feedback = createNewFeedback(title, description, rating);
-        return String.format(FEEDBACK_CREATED_SUCCESSFULLY, feedback.getTitle());
+        return String.format(FEEDBACK_CREATED_SUCCESSFULLY,feedback.getId(), feedback.getTitle());
     }
     private Feedback createNewFeedback(String title, String description,int rating){
         return getTaskManagerRepository().createFeedback(title, description, rating);

@@ -12,8 +12,8 @@ import java.util.List;
 
 public class CreateNewStoryWithoutAssignee extends BaseCommand{
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 4;
-    public final static String STORY_CREATED_SUCCESSFULLY = "Story with title: %s was created successfully";
-    public final static String STORY_CREATED_SUCCESSFULLY_IN_BOARD = "Story with title: %s was created successfully in board with name: %s";
+    public final static String STORY_CREATED_SUCCESSFULLY = "Story with ID: %d and title: %s was created successfully";
+    public final static String STORY_CREATED_SUCCESSFULLY_IN_BOARD = "Story with ID: %d and title: %s was created successfully in board with name: %s";
     public CreateNewStoryWithoutAssignee(TaskManagerRepository taskManagerRepository) {
         super(taskManagerRepository);
     }
@@ -37,12 +37,12 @@ public class CreateNewStoryWithoutAssignee extends BaseCommand{
         Board board = getTaskManagerRepository().getBoardByName(boardName);
         Story story = createNewStoryWithoutAssignee(title, description, priority, size);
         board.addTask(story);
-        return String.format(STORY_CREATED_SUCCESSFULLY_IN_BOARD, story.getTitle(), board.getName());
+        return String.format(STORY_CREATED_SUCCESSFULLY_IN_BOARD,story.getId(), story.getTitle(), board.getName());
     }
 
     private String addNewStory(String title, String description, Priority priority, Size size){
         Story story = createNewStoryWithoutAssignee(title, description, priority, size);
-        return String.format(STORY_CREATED_SUCCESSFULLY, story.getTitle());
+        return String.format(STORY_CREATED_SUCCESSFULLY,story.getId(), story.getTitle());
     }
     private Story createNewStoryWithoutAssignee(String title, String description, Priority priority, Size size){
         return getTaskManagerRepository().createStoryWithoutAssignee(title, description, priority, size);

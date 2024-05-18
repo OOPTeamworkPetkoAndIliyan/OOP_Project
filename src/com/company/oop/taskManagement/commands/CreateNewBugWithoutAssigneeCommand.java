@@ -12,8 +12,8 @@ import java.util.List;
 
 public class CreateNewBugWithoutAssigneeCommand extends BaseCommand {
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 4;
-    public final static String BUG_CREATED_SUCCESSFULLY = "Bug with title:(%s) was created successfully";
-    public final static String BUG_CREATED_SUCCESSFULLY_IN_BOARD = "Bug with title: %s was created successfully in board with name: %s";
+    public final static String BUG_CREATED_SUCCESSFULLY = "Bug with ID: %d and title: %s was created successfully";
+    public final static String BUG_CREATED_SUCCESSFULLY_IN_BOARD = "Bug with ID: %d and title: %s was created successfully in board with name: %s";
     public CreateNewBugWithoutAssigneeCommand(TaskManagerRepository taskManagerRepository) {
         super(taskManagerRepository);
     }
@@ -37,12 +37,12 @@ public class CreateNewBugWithoutAssigneeCommand extends BaseCommand {
         Board board = getTaskManagerRepository().getBoardByName(boardName);
         Bug bug = createNewBug(title, description, priority, severity);
         board.addTask(bug);
-        return String.format(BUG_CREATED_SUCCESSFULLY_IN_BOARD, bug.getTitle(), board.getName());
+        return String.format(BUG_CREATED_SUCCESSFULLY_IN_BOARD,bug.getId(), bug.getTitle(), board.getName());
     }
 
     private String addNewBug(String title, String description, Priority priority, Severity severity){
         Bug bug = createNewBug(title, description, priority, severity);
-        return String.format(BUG_CREATED_SUCCESSFULLY, bug.getTitle());
+        return String.format(BUG_CREATED_SUCCESSFULLY,bug.getId(), bug.getTitle());
     }
     private Bug createNewBug(String title, String description, Priority priority, Severity severity){
         return getTaskManagerRepository().createBug(title, description, priority, severity);

@@ -40,6 +40,11 @@ public class BugImpl extends TaskImpl implements Bug {
         this.bugStatus = bugStatus;
     }
 
+    @Override
+    public void addStepsToReproduce(List<String> stepsToReproduce) {
+        this.stepsToReproduce = stepsToReproduce;
+    }
+
     public List<String> getStepsToReproduce() {
         return new ArrayList<>(stepsToReproduce);
     }

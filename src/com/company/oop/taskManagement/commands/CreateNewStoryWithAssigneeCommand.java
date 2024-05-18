@@ -12,8 +12,8 @@ import java.util.List;
 
 public class CreateNewStoryWithAssigneeCommand extends BaseCommand{
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 5;
-    public final static String STORY_CREATED_SUCCESSFULLY = "Story with title: %s was created successfully";
-    public final static String STORY_CREATED_SUCCESSFULLY_IN_BOARD = "Story with title: %s was created successfully in board with name %s";
+    public final static String STORY_CREATED_SUCCESSFULLY = "Story with ID: %d and title: %s was created successfully";
+    public final static String STORY_CREATED_SUCCESSFULLY_IN_BOARD = "Story with ID: %d and title: %s was created successfully in board with name %s";
 
     public CreateNewStoryWithAssigneeCommand(TaskManagerRepository taskManagerRepository) {
         super(taskManagerRepository);
@@ -39,12 +39,12 @@ public class CreateNewStoryWithAssigneeCommand extends BaseCommand{
         Board board = getTaskManagerRepository().getBoardByName(boardName);
         Story story = createNewStory(title, description, priority, size, memberName);
         board.addTask(story);
-        return String.format(STORY_CREATED_SUCCESSFULLY_IN_BOARD, story.getTitle(), board.getName());
+        return String.format(STORY_CREATED_SUCCESSFULLY_IN_BOARD,story.getId(), story.getTitle(), board.getName());
     }
 
     private String addNewStory(String title, String description, Priority priority, Size size, String memberName){
         Story story = createNewStory(title, description, priority, size, memberName);
-        return String.format(STORY_CREATED_SUCCESSFULLY, story.getTitle());
+        return String.format(STORY_CREATED_SUCCESSFULLY,story.getId(), story.getTitle());
     }
     private Story createNewStory(String title, String description, Priority priority, Size size, String memberName){
         return getTaskManagerRepository().createStoryWithAssignee(title, description, priority, size, memberName);

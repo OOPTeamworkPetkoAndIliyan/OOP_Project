@@ -69,6 +69,8 @@ public class TaskManagerCommandFactoryImpl implements TaskManagerCommandFactory 
                 return new ShowTeamActivityCommand(taskManagerRepository);
             case SHOWBOARDACTIVITYCOMMAND:
                 return new ShowBoardActivityCommand(taskManagerRepository);
+            case ADDSTEPSTOREPRODUCECOMMAND:
+                return new AddStepsToReproduceToBug(taskManagerRepository);
             default:
                 throw new IllegalArgumentException();
         }
