@@ -45,35 +45,28 @@ public class StoryImpl extends TaskImpl implements Story {
 
     @Override
     public void changePriority(Priority priority) {
+        String previousPriority = this.priority.toString();
         this.priority = priority;
+        String presentPriority = this.priority.toString();
+        getHistory().add(new EventLog(String.format("The priority of item with ID: %d switched from %s to %s",
+                getId(), previousPriority, presentPriority)));
     }
 
     @Override
     public void changeSize(Size size) {
+        String previousSize = this.size.toString();
         this.size = size;
+        String presentSize = this.size.toString();
+        getHistory().add(new EventLog(String.format("The size of item with ID: %d switched from %s to %s",
+                getId(), previousSize, presentSize)));
     }
 
     @Override
     public void changeStatus(StoryStatus storyStatus) {
+        String previousStatus = this.storyStatus.toString();
         this.storyStatus = storyStatus;
-    }
-
-    @Override
-    public void showDetails() {
-//        StringBuilder sb = new StringBuilder();
-//        sb.append("Story Details:\n");
-//        sb.append("ID: ").append(getId()).append("\n");
-//        sb.append("Title: ").append(getTitle()).append("\n");
-//        sb.append("Description: ").append(getDescription()).append("\n");
-//        sb.append("Status: ").append(getStatus()).append("\n");
-//        sb.append("Assignee: ").append(getAssignee()).append("\n");
-//        sb.append("Priority: ").append(getPriority()).append("\n");
-//        sb.append("Size: ").append(getSize()).append("\n");
-//        System.out.println(sb);
-    }
-
-    @Override
-    public String showActivity() {
-        return null;
+        String presentStatus = this.storyStatus.toString();
+        getHistory().add(new EventLog(String.format("The status of item with ID: %d switched from %s to %s",
+                getId(), previousStatus, presentStatus)));
     }
 }

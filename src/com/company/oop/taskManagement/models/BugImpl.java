@@ -34,12 +34,6 @@ public class BugImpl extends TaskImpl implements Bug {
     public void setAssignee(Member assignee) {
         this.assignee = assignee;
     }
-
-    @Override
-    public void changeStatus(BugStatus bugStatus) {
-        this.bugStatus = bugStatus;
-    }
-
     @Override
     public void addStepsToReproduce(List<String> stepsToReproduce) {
         this.stepsToReproduce = stepsToReproduce;
@@ -60,24 +54,29 @@ public class BugImpl extends TaskImpl implements Bug {
     public BugStatus getStatus() {
         return bugStatus;
     }
-
     @Override
-    public void showDetails() {
-
+    public void changeStatus(BugStatus bugStatus) {
+        String previousStatus = this.bugStatus.toString();
+        this.bugStatus = bugStatus;
+        String presentStatus = this.bugStatus.toString();
+        getHistory().add(new EventLog(String.format("The status of item with ID: %d switched from %s to %s",
+                getId(), previousStatus, presentStatus)));
     }
-
     @Override
     public void changePriority(Priority priority) {
+        String previousPriority = this.priority.toString();
         this.priority = priority;
+        String presentPriority = this.priority.toString();
+        getHistory().add(new EventLog(String.format("The priority of item with ID: %d switched from %s to %s",
+                getId(), previousPriority, presentPriority)));
     }
 
     @Override
     public void changeSeverity(Severity severity) {
+        String previousSeverity = this.severity.toString();
         this.severity = severity;
-    }
-
-    @Override
-    public String showActivity() {
-        return null;
+        String presentSeverity = this.severity.toString();
+        getHistory().add(new EventLog(String.format("The severity of item with ID: %d switched from %s to %s",
+                getId(), previousSeverity, presentSeverity)));
     }
 }

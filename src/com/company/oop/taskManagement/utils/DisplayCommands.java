@@ -53,6 +53,9 @@ public class DisplayCommands {
         appendColoredCommand(sb, "addboardtoteamcommand");
         sb.append("--").append("{board name}").append("--")
                 .append("{team name}").append(System.lineSeparator());
+        appendColoredCommand(sb, "addstepstoreproducetobugcommand");
+        sb.append("--").append("{steps to reproduce}").append("--")
+                .append("{bug ID}").append(System.lineSeparator());
         appendColoredCommand(sb, "assigntasktomembercommand");
         sb.append("--").append("{task ID}").append("--")
                 .append("{member name}").append(System.lineSeparator());
@@ -97,6 +100,8 @@ public class DisplayCommands {
         sb.append("--").append("{team name}").append(System.lineSeparator());
         appendColoredCommand(sb, "showboardactivitycommand");
         sb.append("--").append("{board name}").append(System.lineSeparator());
+        appendColoredCommand(sb, "showtaskactivitycommand");
+        sb.append("--").append("{task name}").append(System.lineSeparator());
         System.out.println(sb);
     }
 

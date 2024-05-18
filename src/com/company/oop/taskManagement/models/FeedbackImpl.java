@@ -13,13 +13,6 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
         this.rating = rating;
         this.feedbackStatus = FeedbackStatus.NEW;
     }
-
-
-    @Override
-    public void showDetails() {
-
-    }
-
     @Override
     public int getRating() {
         return this.rating;
@@ -27,21 +20,24 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
 
     @Override
     public void changeRating(int rating) {
+        int previousRating = this.rating;
         this.rating = rating;
+        int presentRating = this.rating;
+        getHistory().add(new EventLog(String.format("The rating of item with ID: %d switched from %d to %d",
+                getId(), previousRating, presentRating)));
     }
 
     @Override
     public void changeStatus(FeedbackStatus feedbackStatus) {
+        String previousStatus = this.feedbackStatus.toString();
         this.feedbackStatus = feedbackStatus;
+        String presentStatus = this.feedbackStatus.toString();
+        getHistory().add(new EventLog(String.format("The status of item with ID: %d switched from %s to %s",
+                getId(), previousStatus, presentStatus)));
     }
 
     @Override
     public FeedbackStatus getStatus() {
         return feedbackStatus;
-    }
-
-    @Override
-    public String showActivity() {
-        return null;
     }
 }

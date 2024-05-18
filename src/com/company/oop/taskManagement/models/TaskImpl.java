@@ -54,13 +54,15 @@ public abstract class TaskImpl implements Task {
     public String getDescription() {
         return description;
     }
+
     @Override
     public List<Comment> getComments() {
         return new ArrayList<>(comments);
     }
 
+    @Override
     public List<EventLog> getHistory() {
-        return new ArrayList<>(history);
+        return this.history;
     }
 
     @Override
@@ -77,20 +79,13 @@ public abstract class TaskImpl implements Task {
     public void removeComment(Comment comment) {
         comments.remove(comment);
     }
-
     @Override
-    public abstract void showDetails();
-}
- /*за репозиторито
-    List<Task>tasks = new ArrayList<>(tasks);
-    List<Bug>bugs = new ArrayList<>(bugs);
-    List<Story>storys = new ArrayList<>(storys);
-    List<FeedBack>feedbacks = new ArrayList<>(feedbacks);
-
-    private void createBug(Параметрите за бъга){
-        *тук имаш проверки и др глупости*
-        bugs.add(bug) -> съхраняваш новият бъг в листа от бъгове
-        tasks.add(tasks) -> съхраняваш новият бъг в листа от таскове
-        return new BugImpl(Параметрите за бъга)
+    public String showActivity() {
+        StringBuilder stringBuilder = new StringBuilder("Task's activity: ");
+        stringBuilder.append(System.lineSeparator());
+        for (EventLog eventLog : getHistory()) {
+            stringBuilder.append(eventLog.viewInfo()).append(System.lineSeparator());
+        }
+        return stringBuilder.toString();
     }
-  */
+}
