@@ -74,11 +74,6 @@ public abstract class TaskImpl implements Task {
     public void addComment(Comment comment) {
         comments.add(comment);
     }
-
-    @Override
-    public void removeComment(Comment comment) {
-        comments.remove(comment);
-    }
     @Override
     public String showActivity() {
         StringBuilder stringBuilder = new StringBuilder("Task's activity: ");

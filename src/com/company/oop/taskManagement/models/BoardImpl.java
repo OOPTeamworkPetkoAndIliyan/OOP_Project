@@ -23,7 +23,7 @@ public class BoardImpl implements Board {
     public String getName() {
         return name;
     }
-
+    @Override
     public List<Task> getTasks() {
         return new ArrayList<>(tasks);
     }

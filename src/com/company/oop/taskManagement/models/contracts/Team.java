@@ -4,6 +4,7 @@ import java.util.List;
 
 public interface Team extends ShowActivity {
     List<Member> getMembers();
+    List<Board> getBoards();
     String getName();
     void addMember(Member member);
     void removeMember(Member member);;
