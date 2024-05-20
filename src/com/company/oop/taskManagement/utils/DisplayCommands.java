@@ -104,6 +104,12 @@ public class DisplayCommands {
         sb.append("--").append("{task name}").append(System.lineSeparator());
         appendColoredCommand(sb, "listalltaskssortedbytitlecommand");
         sb.append(System.lineSeparator());
+        appendColoredCommand(sb, "listalltasksfilteredbytitlecommand");
+        sb.append("--").append("{title}").append(System.lineSeparator());
+        appendColoredCommand(sb, "listtaskswithassigneesortedbytitlecommand");
+        sb.append(System.lineSeparator());
+        appendColoredCommand(sb, "listtaskswithassigneefilteredbyassigneecommand");
+        sb.append("--").append("{assignee name}").append(System.lineSeparator());
         System.out.println(sb);
     }
 

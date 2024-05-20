@@ -258,6 +258,7 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
         }
         return str.toString();
     }
+
     @Override
     public String listAllTasksSortedByTitle() {
         List<Task> tasks = getTasks().stream().sorted(Comparator.comparing((Task::getTitle))).toList();
@@ -274,6 +275,18 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
         List<Task> tasks = getTasks().stream().filter(task -> task.getAssignee() != null)
                 .sorted(Comparator.comparing(Task::getTitle)).toList();
         StringBuilder str = new StringBuilder("All tasks with assignee sorted by title: ");
+        str.append(System.lineSeparator());
+        for (Task task : tasks) {
+            str.append(task.showDetails()).append(System.lineSeparator());
+        }
+        return str.toString();
+    }
+
+    @Override
+    public String listAllTasksWithAssigneeFilteredByAssignee(String assigneeName) {
+        List<Task> tasks = getTasks().stream().filter(task -> task.getAssignee() != null)
+                .filter(task -> task.getAssignee().getName().equals(assigneeName)).toList();
+        StringBuilder str = new StringBuilder("All tasks with assignee filtered by assignee: ");
         str.append(System.lineSeparator());
         for (Task task : tasks) {
             str.append(task.showDetails()).append(System.lineSeparator());

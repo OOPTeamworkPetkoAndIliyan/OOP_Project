@@ -38,4 +38,6 @@ public interface TaskManagerRepository {
      String listAllTasksFilteredByTitle(String title);
      String listAllTasksSortedByTitle();
      String listTasksWithAssigneeSortedByTitle();
+
+    String listAllTasksWithAssigneeFilteredByAssignee(String assigneeName);
 }
