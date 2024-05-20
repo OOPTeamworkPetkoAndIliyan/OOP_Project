@@ -9,6 +9,7 @@ import com.company.oop.taskManagement.models.enums.Size;
 import java.util.List;
 
 public interface TaskManagerRepository {
+    List<Task> getTasks();
     Board createBoard(String name);
     Team createTeam(String name);
     Member createMember(String name);

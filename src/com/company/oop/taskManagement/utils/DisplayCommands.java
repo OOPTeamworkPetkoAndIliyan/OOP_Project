@@ -102,6 +102,8 @@ public class DisplayCommands {
         sb.append("--").append("{board name}").append(System.lineSeparator());
         appendColoredCommand(sb, "showtaskactivitycommand");
         sb.append("--").append("{task name}").append(System.lineSeparator());
+        appendColoredCommand(sb, "listalltaskssortedbytitlecommand");
+        sb.append(System.lineSeparator());
         System.out.println(sb);
     }
 

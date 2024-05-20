@@ -73,6 +73,10 @@ public class TaskManagerCommandFactoryImpl implements TaskManagerCommandFactory 
                 return new AddStepsToReproduceToBug(taskManagerRepository);
             case SHOWTASKACTIVITYCOMMAND:
                 return new ShowTaskActivityCommand(taskManagerRepository);
+            case LISTALLTASKSSORTEDBYTITLECOMMAND:
+                return new ListAllTasksSortedByTitleCommand(taskManagerRepository);
+            case LISTALLTASKSFILTEREDBYTITLECOMMAND:
+                return new ListAllTasksFilteredByTitleCommand(taskManagerRepository);
             default:
                 throw new IllegalArgumentException();
         }
