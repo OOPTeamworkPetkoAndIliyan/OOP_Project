@@ -1,14 +1,13 @@
 package com.company.oop.taskManagement.commands;
 
-import com.company.oop.taskManagement.commands.BaseCommand;
 import com.company.oop.taskManagement.core.contracts.TaskManagerRepository;
 import com.company.oop.taskManagement.utils.ValidationHelpers;
 
 import java.util.List;
 
-public class ListAllTasksWithAssigneeFilteredByAssigneeCommand extends BaseCommand {
+public class ListTasksWithAssigneeFilteredByAssigneeCommand extends BaseCommand {
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 1;
-    public ListAllTasksWithAssigneeFilteredByAssigneeCommand(TaskManagerRepository taskManagerRepository) {
+    public ListTasksWithAssigneeFilteredByAssigneeCommand(TaskManagerRepository taskManagerRepository) {
         super(taskManagerRepository);
     }
 
