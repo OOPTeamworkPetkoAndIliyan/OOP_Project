@@ -5,15 +5,17 @@ import com.company.oop.taskManagement.models.contracts.Bug;
 import com.company.oop.taskManagement.models.contracts.Member;
 import com.company.oop.taskManagement.models.enums.Priority;
 import com.company.oop.taskManagement.models.enums.Severity;
-import com.company.oop.taskManagement.models.enums.BugEnums.BugStatus;
+import com.company.oop.taskManagement.models.enums.Status;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BugImpl extends TaskImpl implements Bug {
+    Status[] STORY_POSSIBLE_STATUS = new Status[]{Status.ACTIVE, Status.DONE};
     private Priority priority;
     private Severity severity;
-    private BugStatus bugStatus;
+    private Status status;
     private Member assignee;
     private List<String> stepsToReproduce;
 
@@ -22,7 +24,7 @@ public class BugImpl extends TaskImpl implements Bug {
                    Priority priority, Severity severity) {
         super(id,title, description);
         this.stepsToReproduce = new ArrayList<>();
-        this.bugStatus = BugStatus.ACTIVE;
+        this.status = Status.ACTIVE;
         this.priority = priority;
         this.severity = severity;
     }
@@ -50,14 +52,17 @@ public class BugImpl extends TaskImpl implements Bug {
         return severity;
     }
     @Override
-    public BugStatus getStatus() {
-        return bugStatus;
+    public Status getStatus() {
+        return status;
     }
     @Override
-    public void changeStatus(BugStatus bugStatus) {
-        String previousStatus = this.bugStatus.toString();
-        this.bugStatus = bugStatus;
-        String presentStatus = this.bugStatus.toString();
+    public void changeStatus(Status status) {
+        String previousStatus = this.status.toString();
+        if (Arrays.stream(STORY_POSSIBLE_STATUS).noneMatch(s -> s == status)) {
+            throw new IllegalArgumentException("Not a valid status for story");
+        }
+        this.status = status;
+        String presentStatus = this.status.toString();
         getHistory().add(new EventLog(String.format("The status of item with ID: %d switched from %s to %s",
                 getId(), previousStatus, presentStatus)));
     }

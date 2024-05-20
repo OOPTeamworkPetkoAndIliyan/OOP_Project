@@ -2,17 +2,20 @@ package com.company.oop.taskManagement.models;
 
 import com.company.oop.taskManagement.models.contracts.Feedback;
 import com.company.oop.taskManagement.models.contracts.Member;
-import com.company.oop.taskManagement.models.enums.FeedbackEnums.FeedbackStatus;
+import com.company.oop.taskManagement.models.enums.Status;
+
+import java.util.Arrays;
 
 
 public class FeedbackImpl extends TaskImpl implements Feedback {
+    Status[] STORY_POSSIBLE_STATUS = new Status[]{Status.NEW, Status.SCHEDULED, Status.UNSCHEDULED, Status.DONE};
     private int rating;
-    private FeedbackStatus feedbackStatus;
+    private Status feedbackStatus;
 
     public FeedbackImpl(int id, String title, String description, int rating) {
         super(id, title, description);
         this.rating = rating;
-        this.feedbackStatus = FeedbackStatus.NEW;
+        this.feedbackStatus = Status.NEW;
     }
     @Override
     public int getRating() {
@@ -29,16 +32,19 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
     }
 
     @Override
-    public void changeStatus(FeedbackStatus feedbackStatus) {
+    public void changeStatus(Status status) {
         String previousStatus = this.feedbackStatus.toString();
-        this.feedbackStatus = feedbackStatus;
+        if (Arrays.stream(STORY_POSSIBLE_STATUS).noneMatch(s -> s == status)) {
+            throw new IllegalArgumentException("Not a valid status for story");
+        }
+        this.feedbackStatus = status;
         String presentStatus = this.feedbackStatus.toString();
         getHistory().add(new EventLog(String.format("The status of item with ID: %d switched from %s to %s",
                 getId(), previousStatus, presentStatus)));
     }
 
     @Override
-    public FeedbackStatus getStatus() {
+    public Status getStatus() {
         return feedbackStatus;
     }
 

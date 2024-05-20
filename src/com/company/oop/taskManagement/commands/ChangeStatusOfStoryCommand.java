@@ -1,10 +1,8 @@
 package com.company.oop.taskManagement.commands;
 
 import com.company.oop.taskManagement.core.contracts.TaskManagerRepository;
-import com.company.oop.taskManagement.models.contracts.Bug;
 import com.company.oop.taskManagement.models.contracts.Story;
-import com.company.oop.taskManagement.models.enums.BugEnums.BugStatus;
-import com.company.oop.taskManagement.models.enums.StoryEnums.StoryStatus;
+import com.company.oop.taskManagement.models.enums.Status;
 import com.company.oop.taskManagement.utils.ParsingHelpers;
 import com.company.oop.taskManagement.utils.ValidationHelpers;
 
@@ -23,11 +21,11 @@ public class ChangeStatusOfStoryCommand extends BaseCommand{
     protected String executeCommand(List<String> parameters) {
         ValidationHelpers.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
         int storyID = ParsingHelpers.tryParseInt(parameters.get(0), ID_ERROR_MESSAGE);
-        StoryStatus storyStatus = ParsingHelpers.tryParseEnum(parameters.get(1), StoryStatus.class);
+        Status storyStatus = ParsingHelpers.tryParseEnum(parameters.get(1), Status.class);
         return changeStatusOfStory(storyID, storyStatus);
     }
 
-    private String changeStatusOfStory(int storyID, StoryStatus storyStatus) {
+    private String changeStatusOfStory(int storyID, Status storyStatus) {
         Story story = getTaskManagerRepository().getStoryByID(storyID);
         story.changeStatus(storyStatus);
         return String.format(THE_STATUS_OF_STORY_WAS_CHANGED_SUCCESSFULLY, story.getId(), story.getStatus());
