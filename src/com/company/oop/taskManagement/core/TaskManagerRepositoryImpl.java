@@ -11,6 +11,7 @@ import com.company.oop.taskManagement.models.enums.Size;
 
 import java.lang.String;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class TaskManagerRepositoryImpl implements TaskManagerRepository {
@@ -33,10 +34,27 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
         this.feedbacks = new ArrayList<>();
         this.boards = new ArrayList<>();
     }
+
     @Override
-    public List<Task> getTasks(){
+    public List<Task> getTasks() {
         return new ArrayList<>(tasks);
     }
+
+    @Override
+    public List<Bug> getBugs() {
+        return new ArrayList<>(bugs);
+    }
+
+    @Override
+    public List<Story> getStories() {
+        return new ArrayList<>(stories);
+    }
+
+    @Override
+    public List<Feedback> getFeedbacks() {
+        return new ArrayList<>(feedbacks);
+    }
+
     @Override
     public Bug createBug(String title, String description, Priority priority, Severity severity) {
         Bug bug = new BugImpl(++nextId, title, description,
@@ -45,6 +63,7 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
         tasks.add(bug);
         return bug;
     }
+
     public Bug createBugWithAssignee(String title, String description,
                                      Priority priority, Severity severity, String memberName) {
         Bug bug = new BugImpl(++nextId, title, description,
@@ -76,9 +95,9 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
     }
 
     @Override
-    public Team createTeam(String name){
+    public Team createTeam(String name) {
         for (Team team : teams) {
-            if (team.getName().equals(name)){
+            if (team.getName().equals(name)) {
                 throw new IllegalArgumentException(String.format("There is already an existing team with name: %s", name));
             }
         }
@@ -97,7 +116,7 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
     @Override
     public Member createMember(String name) {
         for (Member member : members) {
-            if (member.getName().equals(name)){
+            if (member.getName().equals(name)) {
                 throw new IllegalArgumentException(String.format("There is already an existing member with name: %s", name));
             }
         }
@@ -105,6 +124,7 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
         members.add(member);
         return member;
     }
+
     @Override
     public Feedback createFeedback(String title, String description, int rating) {
         Feedback feedback = new FeedbackImpl(++nextId, title, description, rating);
@@ -121,7 +141,7 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
     @Override
     public Member getMemberByName(String memberName) {
         for (Member member : members) {
-            if (member.getName().equals(memberName)){
+            if (member.getName().equals(memberName)) {
                 return member;
             }
         }
@@ -130,7 +150,7 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
 
 
     @Override
-    public  String showAllMembers() {
+    public String showAllMembers() {
         StringBuilder stringBuilder = new StringBuilder("Members: ");
         for (Member member : members) {
             stringBuilder.append(member.getName()).append(System.lineSeparator());
@@ -160,9 +180,9 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
     public String showAllTeamMembers(String teamName) {
         Team team = getTeamByName(teamName);
         StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("Members for team ").append(team.getName()).append(":").append(System.lineSeparator());
-            for (Member member : team.getMembers()) {
-                stringBuilder.append(member.getName()).append(System.lineSeparator());
+        stringBuilder.append("Members for team ").append(team.getName()).append(":").append(System.lineSeparator());
+        for (Member member : team.getMembers()) {
+            stringBuilder.append(member.getName()).append(System.lineSeparator());
 
         }
         return stringBuilder.toString();
@@ -171,7 +191,7 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
     @Override
     public Team getTeamByName(String teamName) {
         for (Team team : teams) {
-            if (team.getName().equals(teamName)){
+            if (team.getName().equals(teamName)) {
                 return team;
             }
         }
@@ -181,7 +201,7 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
     @Override
     public Board getBoardByName(String boardName) {
         for (Board board : boards) {
-            if (board.getName().equals(boardName)){
+            if (board.getName().equals(boardName)) {
                 return board;
             }
         }
@@ -191,17 +211,17 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
     @Override
     public Task getTaskByID(int taskID) {
         for (Task task : tasks) {
-            if (task.getId() == taskID){
+            if (task.getId() == taskID) {
                 return task;
             }
         }
-        throw new IllegalArgumentException( String.format("There is no such task with ID: %d", taskID));
+        throw new IllegalArgumentException(String.format("There is no such task with ID: %d", taskID));
     }
 
     @Override
     public Bug getBugByID(int bugID) {
         for (Bug bug : bugs) {
-            if (bug.getId() == bugID){
+            if (bug.getId() == bugID) {
                 return bug;
             }
         }
@@ -211,7 +231,7 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
     @Override
     public Story getStoryByID(int storyID) {
         for (Story story : stories) {
-            if (story.getId() == storyID){
+            if (story.getId() == storyID) {
                 return story;
             }
         }
@@ -221,12 +241,43 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
     @Override
     public Feedback getFeedbackByID(int feedbackID) {
         for (Feedback feedback : feedbacks) {
-            if (feedback.getId() == feedbackID){
+            if (feedback.getId() == feedbackID) {
                 return feedback;
             }
         }
         throw new IllegalArgumentException(String.format("There is no feedback with ID: %d", feedbackID));
     }
 
+    @Override
+    public String listAllTasksFilteredByTitle(String title) {
+        List<Task> tasks = getTasks().stream().filter(task -> task.getTitle().contains(title)).toList();
+        StringBuilder str = new StringBuilder("All tasks filtered by title: ");
+        str.append(System.lineSeparator());
+        for (Task task : tasks) {
+            str.append(task.showDetails()).append(System.lineSeparator());
+        }
+        return str.toString();
+    }
+    @Override
+    public String listAllTasksSortedByTitle() {
+        List<Task> tasks = getTasks().stream().sorted(Comparator.comparing((Task::getTitle))).toList();
+        StringBuilder str = new StringBuilder("All tasks sorted by title: ");
+        str.append(System.lineSeparator());
+        for (Task task : tasks) {
+            str.append(task.showDetails()).append(System.lineSeparator());
+        }
+        return str.toString();
+    }
 
+    @Override
+    public String listTasksWithAssigneeSortedByTitle() {
+        List<Task> tasks = getTasks().stream().filter(task -> task.getAssignee() != null)
+                .sorted(Comparator.comparing(Task::getTitle)).toList();
+        StringBuilder str = new StringBuilder("All tasks with assignee sorted by title: ");
+        str.append(System.lineSeparator());
+        for (Task task : tasks) {
+            str.append(task.showDetails()).append(System.lineSeparator());
+        }
+        return str.toString();
+    }
 }

@@ -5,6 +5,7 @@ import com.company.oop.taskManagement.models.EventLog;
 import java.util.List;
 
 public interface Task extends Identifiable, Commentable, ShowActivity {
+    Member getAssignee();
     String getTitle();
     String getDescription();
     void addComment(Comment comment);

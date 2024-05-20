@@ -29,7 +29,7 @@ public class BugImpl extends TaskImpl implements Bug {
     public Member getAssignee() {
         return assignee;
     }
-
+    @Override
     public void setAssignee(Member assignee) {
         this.assignee = assignee;
     }

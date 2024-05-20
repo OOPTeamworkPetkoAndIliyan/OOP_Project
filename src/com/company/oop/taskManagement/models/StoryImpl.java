@@ -20,6 +20,7 @@ public class StoryImpl extends TaskImpl implements Story {
         this.size = size;
         this.priority = priority;
     }
+    @Override
     public Member getAssignee() {
         return assignee;
     }

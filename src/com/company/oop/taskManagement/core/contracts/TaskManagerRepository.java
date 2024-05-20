@@ -10,6 +10,9 @@ import java.util.List;
 
 public interface TaskManagerRepository {
     List<Task> getTasks();
+    List<Bug> getBugs();
+    List<Story> getStories();
+    List<Feedback> getFeedbacks();
     Board createBoard(String name);
     Team createTeam(String name);
     Member createMember(String name);
@@ -32,4 +35,7 @@ public interface TaskManagerRepository {
     Bug getBugByID(int bugID);
     Story getStoryByID(int storyID);
     Feedback getFeedbackByID(int feedbackID);
+     String listAllTasksFilteredByTitle(String title);
+     String listAllTasksSortedByTitle();
+     String listTasksWithAssigneeSortedByTitle();
 }

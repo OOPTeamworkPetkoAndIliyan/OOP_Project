@@ -1,6 +1,7 @@
 package com.company.oop.taskManagement.models;
 
 import com.company.oop.taskManagement.models.contracts.Feedback;
+import com.company.oop.taskManagement.models.contracts.Member;
 import com.company.oop.taskManagement.models.enums.FeedbackEnums.FeedbackStatus;
 
 
@@ -40,6 +41,12 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
     public FeedbackStatus getStatus() {
         return feedbackStatus;
     }
+
+    @Override
+    public Member getAssignee() {
+        return null;
+    }
+
     @Override
     public String showDetails(){
         StringBuilder str = new StringBuilder(String.format("%s", super.showDetails()));

@@ -16,16 +16,6 @@ public class ListAllTasksFilteredByTitleCommand extends BaseCommand{
     protected String executeCommand(List<String> parameters) {
         ValidationHelpers.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
         String title = parameters.get(0);
-        return listAllTasksFilteredByTitle(title);
-    }
-
-    private String listAllTasksFilteredByTitle(String title) {
-        List<Task> tasks = getTaskManagerRepository().getTasks().stream().filter(task -> task.getTitle().contains(title)).toList();
-        StringBuilder str = new StringBuilder("All tasks filtered by title: ");
-        str.append(System.lineSeparator());
-        for (Task task : tasks) {
-            str.append(task.showDetails()).append(System.lineSeparator());
-        }
-        return str.toString();
+        return getTaskManagerRepository().listAllTasksFilteredByTitle(title);
     }
 }
