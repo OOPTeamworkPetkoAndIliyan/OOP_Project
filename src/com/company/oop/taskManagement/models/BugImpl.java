@@ -11,12 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BugImpl extends TaskImpl implements Bug {
-    private List<String> stepsToReproduce;
     private Priority priority;
     private Severity severity;
     private BugStatus bugStatus;
     private Member assignee;
-
+    private List<String> stepsToReproduce;
 
 
     public BugImpl(int id, String title, String description,
@@ -78,5 +77,20 @@ public class BugImpl extends TaskImpl implements Bug {
         String presentSeverity = this.severity.toString();
         getHistory().add(new EventLog(String.format("The severity of item with ID: %d switched from %s to %s",
                 getId(), previousSeverity, presentSeverity)));
+    }
+    @Override
+    public String showDetails(){
+        StringBuilder str = new StringBuilder(String.format("%s", super.showDetails()));
+        str.append(String.format("Priority: %s", getPriority())).append(System.lineSeparator());
+        str.append(String.format("Severity: %s", getSeverity())).append(System.lineSeparator());
+        str.append(String.format("Status: %s", getStatus())).append(System.lineSeparator());
+        if (getAssignee() != null){
+            str.append(String.format("Assignee: %s", getAssignee().getName())).append(System.lineSeparator());
+        }
+        str.append("Steps to reproduce: ").append(System.lineSeparator());
+        for (String s : stepsToReproduce) {
+            str.append(s).append(System.lineSeparator());
+        }
+        return str.toString();
     }
 }

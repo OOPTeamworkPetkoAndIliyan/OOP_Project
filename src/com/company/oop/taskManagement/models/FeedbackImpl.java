@@ -40,4 +40,11 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
     public FeedbackStatus getStatus() {
         return feedbackStatus;
     }
+    @Override
+    public String showDetails(){
+        StringBuilder str = new StringBuilder(String.format("%s", super.showDetails()));
+        str.append(String.format("Rating: %d", getRating())).append(System.lineSeparator());
+        str.append(String.format("Status: %s", getStatus())).append(System.lineSeparator());
+        return str.toString();
+    }
 }

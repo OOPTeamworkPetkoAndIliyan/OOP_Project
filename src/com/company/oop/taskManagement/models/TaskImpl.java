@@ -83,4 +83,12 @@ public abstract class TaskImpl implements Task {
         }
         return stringBuilder.toString();
     }
+    @Override
+    public String showDetails(){
+        StringBuilder str = new StringBuilder(String.format("Task with ID: %d has the following details: ", getId()));
+        str.append(System.lineSeparator()).append(String.format("Title: %s", getTitle()));
+        str.append(System.lineSeparator()).append(String.format("Description: %s", getDescription()));
+        str.append(System.lineSeparator());
+        return str.toString();
+    }
 }

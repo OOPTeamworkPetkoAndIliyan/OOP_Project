@@ -8,10 +8,9 @@ import com.company.oop.taskManagement.models.enums.Size;
 import com.company.oop.taskManagement.models.enums.StoryEnums.StoryStatus;
 
 public class StoryImpl extends TaskImpl implements Story {
-    private StoryStatus storyStatus;
-    private Size size;
     private Priority priority;
-
+    private Size size;
+    private StoryStatus storyStatus;
     private Member assignee;
 
     public StoryImpl(int id, String title, String description, Priority priority, Size size) {
@@ -68,5 +67,16 @@ public class StoryImpl extends TaskImpl implements Story {
         String presentStatus = this.storyStatus.toString();
         getHistory().add(new EventLog(String.format("The status of item with ID: %d switched from %s to %s",
                 getId(), previousStatus, presentStatus)));
+    }
+    @Override
+    public String showDetails(){
+        StringBuilder str = new StringBuilder(String.format("%s", super.showDetails()));
+        str.append(String.format("Priority: %s", getPriority())).append(System.lineSeparator());
+        str.append(String.format("Size: %s", getSize())).append(System.lineSeparator());
+        str.append(String.format("Status: %s", getStatus())).append(System.lineSeparator());
+        if (getAssignee() != null){
+            str.append(String.format("Assignee: %s", getAssignee().getName())).append(System.lineSeparator());
+        }
+        return str.toString();
     }
 }

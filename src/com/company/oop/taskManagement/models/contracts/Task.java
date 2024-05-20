@@ -9,4 +9,5 @@ public interface Task extends Identifiable, Commentable, ShowActivity {
     String getDescription();
     void addComment(Comment comment);
     List<EventLog> getHistory();
+    String showDetails();
 }

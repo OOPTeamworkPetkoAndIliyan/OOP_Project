@@ -69,6 +69,3 @@ public class MemberImpl implements Member {
         return stringBuilder.toString();
     }
 }
-// foreach(Member member : members){
-// if(member.getName().equals(name))
-// }
