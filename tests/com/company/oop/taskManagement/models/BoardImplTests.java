@@ -4,11 +4,16 @@ import com.company.oop.taskManagement.models.contracts.Feedback;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 public class BoardImplTests {
-    public static final String INVALID_NAME = "c".repeat(11);
+    public static final String INVALID_NAME_OVER = "c".repeat(11);
+    public static final String INVALID_NAME_BELOW = "c".repeat(4);
     public static final String VALID_NAME = "c".repeat(7);
     @Test
-    public void constructor_Should_ThrowException_WhenNameIsInvalid(){
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new BoardImpl(INVALID_NAME));
+    public void constructor_Should_ThrowException_WhenNameIsLonger(){
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new BoardImpl(INVALID_NAME_OVER));
+    }
+    @Test
+    public void constructor_Should_ThrowException_WhenNameIsShorter(){
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new BoardImpl(INVALID_NAME_BELOW));
     }
     @Test
     public void constructor_Should_NotThrowException_WhenNameIsValid(){
