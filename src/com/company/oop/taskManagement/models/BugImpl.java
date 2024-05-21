@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class BugImpl extends TaskImpl implements Bug {
-    Status[] STORY_POSSIBLE_STATUS = new Status[]{Status.ACTIVE, Status.DONE};
+    Status[] BUG_POSSIBLE_STATUS = new Status[]{Status.ACTIVE, Status.DONE};
     private Priority priority;
     private Severity severity;
     private Status status;
@@ -58,7 +58,7 @@ public class BugImpl extends TaskImpl implements Bug {
     @Override
     public void changeStatus(Status status) {
         String previousStatus = this.status.toString();
-        if (Arrays.stream(STORY_POSSIBLE_STATUS).noneMatch(s -> s == status)) {
+        if (Arrays.stream(BUG_POSSIBLE_STATUS).noneMatch(s -> s == status)) {
             throw new IllegalArgumentException("Not a valid status for bug");
         }
         this.status = status;

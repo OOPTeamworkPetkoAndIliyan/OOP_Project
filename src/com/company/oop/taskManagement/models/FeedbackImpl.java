@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 
 public class FeedbackImpl extends TaskImpl implements Feedback {
-    Status[] STORY_POSSIBLE_STATUS = new Status[]{Status.NEW, Status.SCHEDULED, Status.UNSCHEDULED, Status.DONE};
+    Status[] FEEDBACK_POSSIBLE_STATUS = new Status[]{Status.NEW, Status.SCHEDULED, Status.UNSCHEDULED, Status.DONE};
     private int rating;
     private Status feedbackStatus;
 
@@ -34,7 +34,7 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
     @Override
     public void changeStatus(Status status) {
         String previousStatus = this.feedbackStatus.toString();
-        if (Arrays.stream(STORY_POSSIBLE_STATUS).noneMatch(s -> s == status)) {
+        if (Arrays.stream(FEEDBACK_POSSIBLE_STATUS).noneMatch(s -> s == status)) {
             throw new IllegalArgumentException("Not a valid status for feedback");
         }
         this.feedbackStatus = status;
