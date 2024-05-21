@@ -7,11 +7,16 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class TeamImplTests {
-    public static final String INVALID_NAME = "c".repeat(17);
+    public static final String INVALID_NAME_OVER = "c".repeat(17);
+    public static final String INVALID_NAME_BELOW = "c".repeat(3);
     public static final String VALID_NAME = "c".repeat(7);
     @Test
-    public void constructor_Should_ThrowException_WhenNameIsInvalid(){
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new TeamImpl(INVALID_NAME));
+    public void constructor_Should_ThrowException_WhenNameIsLonger(){
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new TeamImpl(INVALID_NAME_OVER));
+    }
+    @Test
+    public void constructor_Should_ThrowException_WhenNameIsShorter(){
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new TeamImpl(INVALID_NAME_BELOW));
     }
     @Test
     public void constructor_Should_NotThrowException_WhenNameIsValid(){
