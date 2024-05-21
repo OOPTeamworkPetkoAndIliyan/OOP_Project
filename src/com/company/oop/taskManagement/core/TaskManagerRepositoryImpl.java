@@ -6,6 +6,7 @@ import com.company.oop.taskManagement.models.contracts.*;
 import com.company.oop.taskManagement.models.enums.Priority;
 import com.company.oop.taskManagement.models.enums.Severity;
 import com.company.oop.taskManagement.models.enums.Size;
+import com.company.oop.taskManagement.models.enums.Status;
 
 
 import java.lang.String;
@@ -283,9 +284,22 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
 
     @Override
     public String listAllTasksWithAssigneeFilteredByAssignee(String assigneeName) {
-        List<Task> tasks = getTasks().stream().filter(task -> task.getAssignee() != null)
+        List<Task> tasks = getTasks().stream().filter(task -> task.getAssignee()!=null)
                 .filter(task -> task.getAssignee().getName().equals(assigneeName)).toList();
         StringBuilder str = new StringBuilder("All tasks with assignee filtered by assignee: ");
+        str.append(System.lineSeparator());
+        for (Task task : tasks) {
+            str.append(task.showDetails()).append(System.lineSeparator());
+        }
+        return str.toString();
+    }
+
+    @Override
+    public String listTasksFilteredByStatusAndAssignee(String assigneeName, Status status) {
+        List<Task> tasks = getTasks().stream().filter(task -> task.getAssignee()!=null)
+                .filter(task -> task.getStatus().equals(status))
+                .filter(task -> task.getAssignee().getName().equals(assigneeName)).toList();
+        StringBuilder str = new StringBuilder("All tasks filtered by assignee and by status: ");
         str.append(System.lineSeparator());
         for (Task task : tasks) {
             str.append(task.showDetails()).append(System.lineSeparator());

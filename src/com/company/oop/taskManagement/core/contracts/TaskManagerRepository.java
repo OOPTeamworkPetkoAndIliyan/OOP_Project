@@ -4,6 +4,7 @@ import com.company.oop.taskManagement.models.contracts.*;
 import com.company.oop.taskManagement.models.enums.Priority;
 import com.company.oop.taskManagement.models.enums.Severity;
 import com.company.oop.taskManagement.models.enums.Size;
+import com.company.oop.taskManagement.models.enums.Status;
 
 
 import java.util.List;
@@ -40,4 +41,6 @@ public interface TaskManagerRepository {
      String listTasksWithAssigneeSortedByTitle();
 
     String listAllTasksWithAssigneeFilteredByAssignee(String assigneeName);
+
+    String listTasksFilteredByStatusAndAssignee(String assigneeName, Status status);
 }
