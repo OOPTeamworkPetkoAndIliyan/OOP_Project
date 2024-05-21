@@ -35,7 +35,7 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
     public void changeStatus(Status status) {
         String previousStatus = this.feedbackStatus.toString();
         if (Arrays.stream(STORY_POSSIBLE_STATUS).noneMatch(s -> s == status)) {
-            throw new IllegalArgumentException("Not a valid status for story");
+            throw new IllegalArgumentException("Not a valid status for feedback");
         }
         this.feedbackStatus = status;
         String presentStatus = this.feedbackStatus.toString();

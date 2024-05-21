@@ -59,7 +59,7 @@ public class BugImpl extends TaskImpl implements Bug {
     public void changeStatus(Status status) {
         String previousStatus = this.status.toString();
         if (Arrays.stream(STORY_POSSIBLE_STATUS).noneMatch(s -> s == status)) {
-            throw new IllegalArgumentException("Not a valid status for story");
+            throw new IllegalArgumentException("Not a valid status for bug");
         }
         this.status = status;
         String presentStatus = this.status.toString();
