@@ -160,7 +160,7 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
 
     @Override
     public String showAllTeams() {
-        StringBuilder stringBuilder = new StringBuilder("Teams:");
+        StringBuilder stringBuilder = new StringBuilder("Teams: ");
         for (Team team : teams) {
             stringBuilder.append(team.getName()).append(System.lineSeparator());
         }
@@ -169,7 +169,7 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
 
     @Override
     public String showAllBoards() {
-        StringBuilder stringBuilder = new StringBuilder("Boards:");
+        StringBuilder stringBuilder = new StringBuilder("Boards: ");
         for (Board board : boards) {
             stringBuilder.append(board.getName()).append(System.lineSeparator());
         }
