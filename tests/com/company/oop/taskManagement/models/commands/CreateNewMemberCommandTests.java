@@ -1,7 +1,7 @@
 package com.company.oop.taskManagement.models.commands;
 
-import com.company.oop.taskManagement.commands.CreateNewBugWithAssigneeCommand;
 import com.company.oop.taskManagement.commands.CreateNewFeedbackCommand;
+import com.company.oop.taskManagement.commands.CreateNewMemberCommand;
 import com.company.oop.taskManagement.commands.contracts.Command;
 import com.company.oop.taskManagement.core.TaskManagerRepositoryImpl;
 import com.company.oop.taskManagement.core.contracts.TaskManagerRepository;
@@ -16,25 +16,22 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class CreateNewFeedbackCommandTests {
-    public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 3;
+public class CreateNewMemberCommandTests {
+    public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 1;
     private Command command;
     private TaskManagerRepository taskManagerRepository;
     @BeforeEach
     public void before() {
         this.taskManagerRepository = new TaskManagerRepositoryImpl();
-        this.command = new CreateNewFeedbackCommand(taskManagerRepository);
-        Board board = taskManagerRepository.createBoard(CreateBaseConstants.NAME_BOARD_VALID_LENGTH);
+        this.command = new CreateNewMemberCommand(taskManagerRepository);
     }
     @Test
-    public void execute_Should_CreateNewFeedback_When_ValidInput(){
+    public void execute_Should_CreateNewMember_When_ValidInput(){
         List<String> params = List.of(
-                CreateBaseConstants.VALID_TITLE,
-                CreateBaseConstants.VALID_DESCRIPTION,
-                String.valueOf(CreateBaseConstants.FEEDBACK_RATING)
+                CreateBaseConstants.NAME_MEMBER_VALID_LENGTH
         );
         command.execute(params);
-        Assertions.assertEquals(1, taskManagerRepository.getFeedbacks().size());
+        Assertions.assertEquals(1, taskManagerRepository.getMember().size());
     }
     @Test
     public void should_ThrowException_When_ArgumentCountDifferentThanExpected() {
@@ -43,17 +40,5 @@ public class CreateNewFeedbackCommandTests {
 
         // Act, Assert
         assertThrows(IllegalArgumentException.class, () -> command.execute(params));
-    }
-    @Test
-    public void execute_Should_CreateNewBugWithAssigneeInBoard_When_ValidInput(){
-        List<String> params = List.of(
-                CreateBaseConstants.VALID_TITLE,
-                CreateBaseConstants.VALID_DESCRIPTION,
-               String.valueOf(CreateBaseConstants.FEEDBACK_RATING),
-                CreateBaseConstants.NAME_BOARD_VALID_LENGTH
-        );
-        command.execute(params);
-        Assertions.assertEquals(1, taskManagerRepository.getFeedbacks().size());
-        Assertions.assertEquals(1, taskManagerRepository.getBoards().size());
     }
 }

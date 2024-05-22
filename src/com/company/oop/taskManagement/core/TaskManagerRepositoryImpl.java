@@ -36,6 +36,16 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
     }
 
     @Override
+    public List<Member> getMember() {
+        return new ArrayList<>(members);
+    }
+
+    @Override
+    public List<Team> getTeam() {
+        return new ArrayList<>(teams);
+    }
+
+    @Override
     public List<Task> getTasks() {
         return new ArrayList<>(tasks);
     }
