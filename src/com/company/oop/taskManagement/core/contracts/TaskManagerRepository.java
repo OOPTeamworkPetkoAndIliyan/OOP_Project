@@ -14,6 +14,7 @@ public interface TaskManagerRepository {
     List<Bug> getBugs();
     List<Story> getStories();
     List<Feedback> getFeedbacks();
+    List<Board> getBoards();
     Board createBoard(String name);
     Team createTeam(String name);
     Member createMember(String name);

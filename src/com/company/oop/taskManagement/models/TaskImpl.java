@@ -91,4 +91,5 @@ public abstract class TaskImpl implements Task {
         str.append(System.lineSeparator());
         return str.toString();
     }
+
 }
