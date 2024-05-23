@@ -110,6 +110,11 @@ public class DisplayCommands {
         sb.append(System.lineSeparator());
         appendColoredCommand(sb, "listtaskswithassigneefilteredbyassigneecommand");
         sb.append("--").append("{assignee name}").append(System.lineSeparator());
+        appendColoredCommand(sb, "listoptionaltypeoftasksfilteredbyentitycommand");
+        sb.append("--").append("{Bug/Story/Feedback}").append("--")
+                        .append("{status/assignee}").append("--")
+                        .append("{status/assignee(optional)}").append(System.lineSeparator());
+
         System.out.println(sb);
     }
 

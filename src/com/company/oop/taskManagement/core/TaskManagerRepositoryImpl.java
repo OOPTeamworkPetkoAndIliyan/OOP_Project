@@ -321,4 +321,93 @@ public class TaskManagerRepositoryImpl implements TaskManagerRepository {
         }
         return str.toString();
     }
+
+    @Override
+    public String filterTaskTypeByStatusAndAssignee(String taskType, Status status, String assigneeName) {
+        StringBuilder str = new StringBuilder();
+        switch (taskType.toUpperCase()){
+            case "BUG":
+                List<Bug> bugs1 = bugs.stream().
+                        filter(bug -> bug.getStatus().toString().equals(status.toString())
+                                && bug.getAssignee() != null && bug.getAssignee().getName().equals(assigneeName))
+                        .toList();
+                str.append(String.format("All bugs of %s with status %s", assigneeName, status.toString()));
+                str.append(System.lineSeparator());
+                for (Bug bug : bugs1) {
+                    str.append(bug.showDetails()).append(System.lineSeparator());
+                }
+                break;
+            case "STORY":
+                List<Story> stories1 = stories.stream().
+                        filter(story -> story.getStatus().toString().equalsIgnoreCase(status.toString())
+                                && story.getAssignee() != null && story.getAssignee().getName().equals(assigneeName))
+                        .toList();
+                str.append(String.format("All stories of %s with status %s", assigneeName, status.toString()));
+                str.append(System.lineSeparator());
+                for (Story story : stories1) {
+                    str.append(story.showDetails()).append(System.lineSeparator());
+                }
+                break;
+            case "FEEDBACK":
+                throw new IllegalArgumentException("Feedbacks do not have an assignee");
+        }
+        return str.toString();
+    }
+
+    @Override
+    public String filterTaskTypeByEntityType(String taskType, String entityType) {
+        StringBuilder str = new StringBuilder();
+        switch (taskType.toUpperCase()){
+            case "BUG":
+                List<Bug> bugs1 = new ArrayList<>();
+                if (entityType.equalsIgnoreCase("status")){
+                    bugs1 = bugs.stream().filter(bug -> bug.getStatus().toString().equalsIgnoreCase(entityType)).toList();
+                    str.append(String.format("All bugs with status %s", entityType));
+                    str.append(System.lineSeparator());
+                    for (Bug bug : bugs1) {
+                        str.append(bug.showDetails()).append(System.lineSeparator());
+                    }
+                }else {
+                    bugs1 = bugs.stream().filter(bug ->bug.getAssignee() != null && bug.getAssignee().getName().equalsIgnoreCase(entityType)).toList();
+                    str.append(String.format("All bugs of %s", entityType));
+                    str.append(System.lineSeparator());
+                    for (Bug bug : bugs1) {
+                        str.append(bug.showDetails()).append(System.lineSeparator());
+                    }
+                }
+                break;
+            case "STORY":
+                List<Story> stories1 = new ArrayList<>();
+                if (entityType.equalsIgnoreCase("status")){
+                    stories1 = stories.stream().filter(story -> story.getStatus().toString().equalsIgnoreCase(entityType)).toList();
+                    str.append(String.format("All stories with status %s", entityType));
+                    str.append(System.lineSeparator());
+                    for (Story story : stories1) {
+                        str.append(story.showDetails()).append(System.lineSeparator());
+                    }
+                }else {
+                    stories1 = stories.stream().filter(story ->story.getAssignee() != null && story.getAssignee().getName().equalsIgnoreCase(entityType)).toList();
+                    str.append(String.format("All stories of %s", entityType));
+                    str.append(System.lineSeparator());
+                    for (Story story : stories1) {
+                        str.append(story.showDetails()).append(System.lineSeparator());
+                    }
+                }
+                break;
+            case "FEEDBACK":
+                List<Feedback> feedbacks1 = new ArrayList<>();
+                if (entityType.equalsIgnoreCase("status")){
+                    feedbacks1 = feedbacks.stream().filter(story -> story.getStatus().toString().equalsIgnoreCase(entityType)).toList();
+                    str.append(String.format("All feedbacks with status %s", entityType));
+                    str.append(System.lineSeparator());
+                    for (Feedback feedback : feedbacks1) {
+                        str.append(feedback.showDetails()).append(System.lineSeparator());
+                    }
+                }else {
+                    throw new IllegalArgumentException("Feedbacks do not have an assignee");
+                }
+                break;
+        }
+        return str.toString();
+    }
 }

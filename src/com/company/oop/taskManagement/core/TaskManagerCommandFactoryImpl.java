@@ -83,6 +83,8 @@ public class TaskManagerCommandFactoryImpl implements TaskManagerCommandFactory 
                 return new ListTasksWithAssigneeFilteredByAssigneeCommand(taskManagerRepository);
             case LISTTASKSFILTEREDBYSTATUSANDBYASSIGNEECOMMAND:
                 return new ListTasksFilteredByStatusAndAssignee(taskManagerRepository);
+            case LISTOPTIONALTYPEOFTASKSFILTEREDBYENTITYCOMMAND:
+                return new ListOptionalTypeOfTasksFilteredByEntity(taskManagerRepository);
             default:
                 throw new IllegalArgumentException();
         }

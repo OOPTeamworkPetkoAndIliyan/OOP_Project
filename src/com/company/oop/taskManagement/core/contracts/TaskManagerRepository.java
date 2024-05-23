@@ -75,4 +75,8 @@ public interface TaskManagerRepository {
     String listAllTasksWithAssigneeFilteredByAssignee(String assigneeName);
 
     String listTasksFilteredByStatusAndAssignee(String assigneeName, Status status);
+
+    String filterTaskTypeByStatusAndAssignee(String taskType, Status status, String assigneeName);
+
+    String filterTaskTypeByEntityType(String taskType, String entityType);
 }
