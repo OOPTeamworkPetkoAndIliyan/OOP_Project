@@ -1,5 +1,7 @@
 package com.company.oop.taskManagement.models.commands;
+
 import com.company.oop.taskManagement.commands.ChangePriorityOfStoryCommand;
+import com.company.oop.taskManagement.commands.ChangeSizeOfStoryCommand;
 import com.company.oop.taskManagement.commands.contracts.Command;
 import com.company.oop.taskManagement.core.TaskManagerRepositoryImpl;
 import com.company.oop.taskManagement.core.contracts.TaskManagerRepository;
@@ -13,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
-public class ChangePriorityOfStoryCommandTests {
+public class ChangeSizeOfStoryCommandTests {
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
     private Command command;
     private TaskManagerRepository taskManagerRepository;
@@ -21,22 +23,22 @@ public class ChangePriorityOfStoryCommandTests {
     @BeforeEach
     public void before() {
         this.taskManagerRepository = new TaskManagerRepositoryImpl();
-        this.command = new ChangePriorityOfStoryCommand(taskManagerRepository);
+        this.command = new ChangeSizeOfStoryCommand(taskManagerRepository);
     }
 
     @Test
-    public void execute_Should_ChangePriorityOfStory_When_ValidInput() {
+    public void execute_Should_ChangeSizeOfStory_When_ValidInput() {
         Story story = taskManagerRepository.createStoryWithoutAssignee(
                 "StoryTitle111",
                 "StoryDescription",
                 Priority.LOW, Size.LARGE
         );
         taskManagerRepository.getStories().add(story);
-        List<String> param = Arrays.asList(String.valueOf(story.getId()),"High");
+        List<String> param = Arrays.asList(String.valueOf(story.getId()),"Small");
         String result = command.execute(param);
 
         // Assert
-        Assertions.assertEquals(Priority.HIGH, story.getPriority());
-        Assertions.assertEquals("The priority of Story with ID: " + story.getId() + ", was changed to High", result);
+        Assertions.assertEquals(Size.SMALL, story.getSize());
+        Assertions.assertEquals("The size of Story with ID: " + story.getId() + ", was changed to Small", result);
     }
 }
